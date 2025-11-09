@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHome } from "react-icons/fa";
 import { HiMiniShoppingBag } from "react-icons/hi2";
+import { MdConnectWithoutContact, MdPermContactCalendar } from "react-icons/md";
 import { Link, NavLink } from "react-router";
 // import logo from "../assets/company_image/toytopia.png";
 // import { AuthContext } from "../Provider/AuthProvider";
@@ -32,10 +33,11 @@ const Navbar = () => {
       </li>
       <li className="mr-5">
         <NavLink
-          to={"/my_profile"}
+          to={"/contact"}
           className={"font-semibold text-secondary text-[18px]"}
         >
-          Profile
+          <MdPermContactCalendar />
+          Contact
         </NavLink>
       </li>
     </>

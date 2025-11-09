@@ -2,6 +2,7 @@ import React from "react";
 import BannerContainer from "../Banners/BannerContainer";
 import FearturedRealState from "../FearturedRealState/FearturedRealState";
 import WhyChooseUS from "../WhyChooseUs/WhyChooseUS";
+import Footer from "../Footer/Footer";
 // import Feature from "../Feature/Feature";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
       {/* <Feature></Feature> */}
       <FearturedRealState></FearturedRealState>
       <WhyChooseUS></WhyChooseUS>
+      <Footer></Footer>
     </div>
   );
 };
