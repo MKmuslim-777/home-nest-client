@@ -1,0 +1,134 @@
+[
+  {
+    "propertyName": "Luxury Seaview Villa",
+    "description": "A stunning 4-bedroom villa with a private pool and breathtaking ocean views. Fully furnished.",
+    "price": 750000,
+    "location": "Cox's Bazar",
+    "category": "Residential",
+    "propertyImage": "https://i.ibb.co.com/bRgNTVYF/ronnie-george-9g-Gv-NWBe-Oq4-unsplash.jpg",
+    "postedDate": "2025-10-15",
+    "postedBy": {
+      "name": "Rina Ahmed",
+      "email": "rina@example.com",
+      "profilePhotoUrl": "https://example.com/profiles/rina_ahmed.jpg"
+    }
+  },
+  {
+    "propertyName": "Modern Loft Apartment",
+    "description": "Chic downtown loft with high ceilings, exposed brick, and state-of-the-art appliances.",
+    "price": 2200,
+    "location": "Dhaka, Gulshan",
+    "category": "Rental",
+    "propertyImage": "https://i.ibb.co.com/T3r2250/avi-werde-h-Hz4yrvxwl-A-unsplash.jpg",
+    "postedDate": "2025-11-01",
+    "postedBy": {
+      "name": "Karim Associates",
+      "profilePhotoUrl": "https://example.com/profiles/karim_associates_logo.png"
+    }
+  },
+  {
+    "propertyName": "Commercial Office Space",
+    "description": "Prime 1,500 sq ft office space on the 5th floor, ideal for startups or consultancy firms.",
+    "price": 150000,
+    "location": "Chittagong, Agrabad",
+    "category": "Commercial",
+    "propertyImage": "https://i.ibb.co.com/F4Q0FmCq/digital-marketing-agency-ntwrk-g39p1k-Djv-SY-unsplash.jpg",
+    "postedDate": "2025-09-28",
+    "postedBy": {
+      "name": "Business Broker",
+      "profilePhotoUrl": "https://example.com/profiles/broker_generic.jpg"
+    }
+  },
+  {
+    "propertyName": "Agricultural Land (10 Acres)",
+    "description": "Fertile land perfect for paddy or vegetable farming, with easy access to irrigation.",
+    "price": 80000,
+    "location": "Jessore",
+    "category": "Land",
+    "propertyImage": "https://i.ibb.co.com/sv1C79KC/frames-for-your-heart-2d4l-AQAlb-DA-unsplash.jpg",
+    "postedDate": "2025-10-20",
+    "postedBy": {
+      "name": "Faruk Hossain",
+      "profilePhotoUrl": "https://example.com/profiles/faruk_hossain.jpg"
+    }
+  },
+  {
+    "propertyName": "Velvet Armchair (Orange)",
+    "description": "Bright orange velvet accent chair with tapered dark legs, excellent for living room decor.",
+    "price": 350,
+    "location": "Online/Warehouse",
+    "category": "Furniture",
+    "propertyImage": "https://i.ibb.co.com/5WcWPr92/406489616-1eaecb29-7431-4de2-8600-e3f73b6245b8.png",
+    "postedDate": "2025-11-05",
+    "postedBy": {
+      "name": "Home Decor BD",
+      "profilePhotoUrl": "https://example.com/profiles/home_decor_bd_logo.png"
+    }
+  },
+  {
+    "propertyName": "Executive Townhouse",
+    "description": "A brand new 3-story townhouse in a secure gated community with attached garage.",
+    "price": 320000,
+    "location": "Sylhet",
+    "category": "Residential",
+    "propertyImage": "https://i.ibb.co.com/ZRTVQNgt/ian-macdonald-W8z6aiwfi1-E-unsplash.jpg",
+    "postedDate": "2025-09-01",
+    "postedBy": {
+      "name": "Green Housing Ltd.",
+      "profilePhotoUrl": "https://example.com/profiles/green_housing_logo.png"
+    }
+  },
+  {
+    "propertyName": "Retail Store Front",
+    "description": "800 sq ft street-facing retail unit in a high-traffic market area. Immediate occupancy.",
+    "price": 50000,
+    "location": "Khulna",
+    "category": "Commercial",
+    "propertyImage": "https://i.ibb.co.com/HpK1gctd/frames-for-your-heart-m-R1-CIDdu-GLc-unsplash.jpg",
+    "postedDate": "2025-10-10",
+    "postedBy": {
+      "name": "Property Hub",
+      "profilePhotoUrl": "https://example.com/profiles/property_hub_icon.png"
+    }
+  },
+  {
+    "propertyName": "Studio Flat (Budget)",
+    "description": "Compact and affordable studio apartment suitable for students or young professionals. Utilities included.",
+    "price": 450,
+    "location": "Rajshahi University Area",
+    "category": "Rental",
+    "propertyImage": "https://i.ibb.co.com/5WhXYtN5/webaliser-TPTXZd9m-Oo-unsplash.jpg",
+    "postedDate": "2025-11-07",
+    "postedBy": {
+      "name": "Student Rentals",
+      "profilePhotoUrl": "https://example.com/profiles/student_rentals_logo.jpg"
+    }
+  },
+  {
+    "propertyName": "Distressed Leather Sofa",
+    "description": "A high-quality, full-grain distressed leather sofa (3-seater) in excellent condition.",
+    "price": 950,
+    "location": "Online/Used Market",
+    "category": "Furniture",
+    "propertyImage": "https://i.ibb.co.com/F4Q0FmCq/digital-marketing-agency-ntwrk-g39p1k-Djv-SY-unsplash.jpg",
+    "postedDate": "2025-09-19",
+    "postedBy": {
+      "name": "Omar Khan",
+      "email": "omar@email.com",
+      "profilePhotoUrl": "https://example.com/profiles/omar_khan.jpg"
+    }
+  },
+  {
+    "propertyName": "Plot for Development",
+    "description": "5 Katha plot in a developing residential area, ready for immediate construction.",
+    "price": 180000,
+    "location": "Gazipur",
+    "category": "Land",
+    "propertyImage": "https://i.ibb.co.com/HpK1gctd/frames-for-your-heart-m-R1-CIDdu-GLc-unsplash.jpg",
+    "postedDate": "2025-10-25",
+    "postedBy": {
+      "name": "Land Sales BD",
+      "profilePhotoUrl": "https://example.com/profiles/land_sales_bd_logo.png"
+    }
+  }
+]

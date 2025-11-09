@@ -1,15 +1,30 @@
-/* @import "tailwindcss";
+@import "tailwindcss";
 @plugin "daisyui";
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
 
-  --color-primary: blue;
-  --color-secondary: teal;
-} */
+  --color-base-100: #e6f7f3;
+  --color-base-200: #afadac;
+  --color-base-300: #dcdad9;
+  --color-base-400: #60a08f;
+  --color-primary: #bfd9d2;
+  --color-secondary: #33424e;
+  --color-secondary-content: #1f473d;
+}
 
-@import "tailwindcss";
+.container {
+  @apply w-11/12 mx-auto;
+}
+
+.myBtn {
+  @apply btn btn-outline btn-secondary hover:text-base-100 font-semibold;
+}
+
+/* @import "tailwindcss";
 @plugin "daisyui";
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
-}
+
+  
+} */
