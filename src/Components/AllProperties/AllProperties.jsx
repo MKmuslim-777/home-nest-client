@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import { Commet } from "react-loading-indicators";
+import { useLoaderData } from "react-router";
 
 const AllProperties = () => {
   const [property, setProperty] = useState(null);
@@ -25,8 +26,9 @@ const AllProperties = () => {
   if (loading) {
     <Commet color="#32cd32" size="medium" text="" textColor="" />;
   }
+  const propertyData = useLoaderData();
   return (
-    <div>
+    <div className="md:container mx-auto">
       <div className="text-center flex justify-center items-center">
         <h2 className="text-5xl font-bold text-secondary text-center my-10">
           All Properties
@@ -37,10 +39,10 @@ const AllProperties = () => {
           className="w-[50px]"
         />
       </div>
-      <div>
-        {/* {property.map((card) => (
+      <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 my-10">
+        {propertyData.map((card) => (
           <PropertyCard card={card}></PropertyCard>
-        ))} */}
+        ))}
       </div>
     </div>
   );

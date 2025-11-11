@@ -58,7 +58,6 @@ const Register = () => {
               <input
                 type="text"
                 name="name"
-                onChange={handleChange}
                 placeholder="Your Full Name"
                 className="input input-bordered w-full"
                 required

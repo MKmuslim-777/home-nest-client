@@ -126,7 +126,14 @@ const Navbar = () => {
                 <p className=" text-secondary font-semibold">
                   Example@gmail.com
                 </p>
-                <button className="myBtn w-full mt-2">Sign Out</button>
+                <div className="flex gap-2.5">
+                  <button className="btn btn-secondary text-base-100 mt-2">
+                    Edit
+                  </button>
+                  <button className="btn btn-outline hover:bg-secondary hover:text-base-100 mt-2">
+                    Sign Out
+                  </button>
+                </div>
 
                 {/* {user ? (
                 <div className="flex flex-col items-center gap-2">

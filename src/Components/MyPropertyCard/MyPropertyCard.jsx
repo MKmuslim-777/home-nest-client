@@ -1,6 +1,7 @@
 import React from "react";
 import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
+import { Link } from "react-router";
 
 const propertyData = {
   imageUrl:
@@ -15,8 +16,8 @@ const propertyData = {
 };
 
 const MyPropertyCard = ({ property = propertyData, card }) => {
-  console.log(card);
-  const { location, price, propertyImage, propertyName } = card;
+  // console.log(card._id);
+  const { location, price, propertyImage, propertyName, _id } = card;
   return (
     <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
       <figure className="relative h-56">
@@ -69,9 +70,12 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
           <button className="btn btn-sm bg-[#00d3bb] text-base-100 border-none">
             Edit
           </button>
-          <button className="btn btn-sm btn-secondary text-base-100">
+          <Link
+            to={`/propertyDetails/${_id}`}
+            className="btn btn-sm btn-secondary text-base-100"
+          >
             View Details
-          </button>
+          </Link>
           <button className="btn btn-sm bg-red-600 border-none text-base-100">
             Delete
           </button>
