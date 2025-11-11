@@ -14,13 +14,15 @@ const propertyData = {
   sqft: 2800,
 };
 
-const PropertyCard = ({ property = propertyData }) => {
+const MyPropertyCard = ({ property = propertyData, card }) => {
+  console.log(card);
+  const { location, price, propertyImage, propertyName } = card;
   return (
     <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
       <figure className="relative h-56">
         <img
-          src={property.imageUrl}
-          alt={property.title}
+          src={propertyImage}
+          alt={propertyName}
           className="w-full h-full object-cover"
         />
         {/* Status Badge - DaisyUI badge component */}
@@ -35,17 +37,13 @@ const PropertyCard = ({ property = propertyData }) => {
 
       <div className="card-body p-5">
         <div className="flex justify-between items-start mb-2">
-          <h2 className="text-2xl font-bold text-secondary">
-            ${property.price}
-          </h2>
+          <h2 className="text-2xl font-bold text-secondary">${price}</h2>
         </div>
-        <h3 className="card-title text-lg mb-1 line-clamp-2">
-          {property.title}
-        </h3>
+        <h3 className="card-title text-lg mb-1 line-clamp-2">{propertyName}</h3>
 
         <p className="flex items-center text-sm text-gray-600 mb-3">
           <HiLocationMarker className="w-4 h-4 mr-1 text-secondary" />
-          <span className="truncate">{property.location}</span>
+          <span className="truncate">{location}</span>
         </p>
 
         <div className="divider my-0"></div>
@@ -83,4 +81,4 @@ const PropertyCard = ({ property = propertyData }) => {
   );
 };
 
-export default PropertyCard;
+export default MyPropertyCard;

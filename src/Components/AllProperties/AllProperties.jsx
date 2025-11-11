@@ -1,12 +1,30 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import PropertyCard from "../PropertyCard/PropertyCard";
+import { Commet } from "react-loading-indicators";
 
 const AllProperties = () => {
+  const [property, setProperty] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/properties")
-      .then((data) => console.log(data.data));
+    // axios.get("http://localhost:3000/properties").then((data) => {
+    //   setProperty(data);
+    //   setLoading(false);
+    //   console.log(property);
+    // });
   }, []);
+
+  // fetch("http://localhost:3000/properties")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setProperty(data);
+  //     setLoading(false);
+  //   });
+  // console.log(property);
+
+  if (loading) {
+    <Commet color="#32cd32" size="medium" text="" textColor="" />;
+  }
   return (
     <div>
       <div className="text-center flex justify-center items-center">
@@ -18,6 +36,11 @@ const AllProperties = () => {
           alt=""
           className="w-[50px]"
         />
+      </div>
+      <div>
+        {/* {property.map((card) => (
+          <PropertyCard card={card}></PropertyCard>
+        ))} */}
       </div>
     </div>
   );

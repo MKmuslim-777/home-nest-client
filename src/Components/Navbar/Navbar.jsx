@@ -13,7 +13,9 @@ const Navbar = () => {
       <li className="mr-5">
         <NavLink
           to={"/"}
-          className={"font-semibold text-secondary text-[18px]"}
+          className={
+            "font-semibold text-secondary text-[18px] hover:bg-transparent "
+          }
         >
           <FaHome />
           Home
@@ -22,7 +24,9 @@ const Navbar = () => {
       <li className="mr-5">
         <NavLink
           to={"/AllProperties"}
-          className={"font-semibold text-secondary text-[18px]"}
+          className={
+            "font-semibold text-secondary text-[18px] hover:bg-transparent"
+          }
         >
           <img
             src="https://img.icons8.com/material-outlined/24/property.png"
@@ -34,10 +38,22 @@ const Navbar = () => {
       <li className="mr-5">
         <NavLink
           to={"/contact"}
-          className={"font-semibold text-secondary text-[18px]"}
+          className={
+            "font-semibold text-secondary text-[18px] hover:bg-transparent"
+          }
         >
           <MdPermContactCalendar />
           Contact
+        </NavLink>
+      </li>
+      <li className="mr-5">
+        <NavLink
+          to={"/myProperties"}
+          className={
+            "font-semibold text-secondary text-[18px] hover:bg-transparent"
+          }
+        >
+          My Properties
         </NavLink>
       </li>
     </>
@@ -56,9 +72,9 @@ const Navbar = () => {
             <div className="drawer-content lg:hidden">
               <label
                 htmlFor="my-drawer-1"
-                className="btn  btn-outline lg:hidden"
+                className="btn border-none shadow-none bg-transparent lg:hidden"
               >
-                <TiThMenu className="hover:text-base-100" />
+                <TiThMenu className=" hover:text-base-100" />
               </label>
             </div>
             <div className="drawer-side">
@@ -85,22 +101,34 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="rounded-full dropdown dropdown-hover  ">
-            <div tabIndex={0} role="button" className="btn btn-circle m-1">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-primary btn-circle m-1"
+            >
               <img
-                // src={`${
-                //   user
-                //     ? user.photoURL
-                //     : "https://img.icons8.com/puffy-filled/32/user.png"
-                // }`}
+                src={`https://img.icons8.com/puffy-filled/32/user.png`}
                 className="rounded-full w-[33px]"
-                alt=""
+                alt="User Image"
               />
             </div>
             <div
               tabIndex="-1"
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm flex flex-col justify-center items-center outline-none"
             >
-              {/* {user ? (
+              <div className="flex flex-col items-center">
+                <img
+                  src={"https://img.icons8.com/puffy-filled/32/user.png"}
+                  className="rounded-full w-[90px] border border-secondary"
+                  alt="User Profile"
+                />
+                <p className=" text-secondary mt-2 font-semibold">User</p>
+                <p className=" text-secondary font-semibold">
+                  Example@gmail.com
+                </p>
+                <button className="myBtn w-full mt-2">Sign Out</button>
+
+                {/* {user ? (
                 <div className="flex flex-col items-center gap-2">
                   <img
                     src={
@@ -118,9 +146,9 @@ const Navbar = () => {
                     className="btn w-full mt-5 text-secondary bg-white"
                   >
                     Sign Out */}
-              {/* </button> */}
-            </div>
-            {/* ) : (
+                {/* </button> */}
+              </div>
+              {/* ) : (
                 <Link
                   to={"/auth/login"}
                   className="btn ml-5 text-white bg-secondary"
@@ -128,20 +156,17 @@ const Navbar = () => {
                   Sign In
                 </Link>
               )} */}
+            </div>
           </div>
-        </div>
-        {/* <Link
-            to={"/auth/register"}
-            className="btn  bg-[#dd6f6d] border-none hover:bg-[#f58e8c] text-white md:block hidden"
-          >
+          {/* <Link to={"/auth/login"} className="myBtn ml-3.5">
             Sign Up
           </Link> */}
-        <Link to={"/auth/login"} className="myBtn ml-3.5">
-          Sign In
-        </Link>
+          <Link to={"/auth/login"} className="myBtn ml-3.5">
+            Sign In
+          </Link>
+        </div>
       </div>
     </div>
-    // </div>
   );
 };
 

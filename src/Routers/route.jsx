@@ -5,6 +5,7 @@ import AllProperties from "../Components/AllProperties/AllProperties";
 import AuthLayout from "../Components/Layouts/AuthLayout/AuthLayout";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
+import MyProperties from "../Components/MyProperties/MyProperties";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
       {
         path: "/AllProperties",
         Component: AllProperties,
+      },
+      {
+        path: "/myProperties",
+        Component: MyProperties,
+        loader: () => fetch("http://localhost:3000/properties"),
       },
     ],
   },

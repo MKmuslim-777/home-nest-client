@@ -26,7 +26,13 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    setPasswordError("");
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photoURL = form.photoURL.value;
+
+    console.log(name, email, password, photoURL);
 
     toast.success("Registration successful! Proceeding...");
   };
@@ -80,9 +86,7 @@ const Register = () => {
           {/* 3. photoURL Input */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-secondary">
-                Photo URL (Optional)
-              </span>
+              <span className="label-text text-secondary">Photo URL</span>
             </label>
             <label className="input-group">
               <input
@@ -91,6 +95,7 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="https://example.com/profile.jpg"
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
