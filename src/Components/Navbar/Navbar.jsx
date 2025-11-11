@@ -1,13 +1,29 @@
-import React from "react";
+import React, { use } from "react";
 import { FaHome } from "react-icons/fa";
 import { TiThMenu } from "react-icons/ti";
 import { MdPermContactCalendar } from "react-icons/md";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 // import logo from "../assets/company_image/toytopia.png";
 // import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
-  //   const { user, signout } = use(AuthContext);
+  const { user, handlesignOut } = use(AuthContext);
+  // console.log(user);
+
+  const handleSignOut = () => {
+    handlesignOut()
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully Sign Out !");
+      })
+      .catch((error) => {
+        toast.error(error);
+        console.log(error);
+      });
+  };
+
   const links = (
     <>
       <li className="mr-5">
@@ -104,38 +120,50 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-primary btn-circle m-1"
+              className="btn btn-primary btn-circle "
             >
               <img
-                src={`https://img.icons8.com/puffy-filled/32/user.png`}
+                src={
+                  user
+                    ? user?.photoURL
+                    : "https://img.icons8.com/puffy-filled/32/user.png"
+                }
                 className="rounded-full w-[33px]"
                 alt="User Image"
               />
             </div>
             <div
               tabIndex="-1"
-              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm flex flex-col justify-center items-center outline-none"
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-[270px] p-2 shadow-sm flex flex-col justify-center items-center outline-none"
             >
-              <div className="flex flex-col items-center">
-                <img
-                  src={"https://img.icons8.com/puffy-filled/32/user.png"}
-                  className="rounded-full w-[90px] border border-secondary"
-                  alt="User Profile"
-                />
-                <p className=" text-secondary mt-2 font-semibold">User</p>
-                <p className=" text-secondary font-semibold">
-                  Example@gmail.com
-                </p>
-                <div className="flex gap-2.5">
-                  <button className="btn btn-secondary text-base-100 mt-2">
-                    Edit
-                  </button>
-                  <button className="btn btn-outline hover:bg-secondary hover:text-base-100 mt-2">
-                    Sign Out
-                  </button>
-                </div>
+              {user && (
+                <div className="flex flex-col items-center">
+                  <img
+                    src={
+                      user
+                        ? user?.photoURL
+                        : "https://img.icons8.com/puffy-filled/32/user.png"
+                    }
+                    className="rounded-full w-[90px] border border-secondary"
+                    alt="User Profile"
+                  />
+                  <p className=" text-secondary mt-2 font-semibold">
+                    {user?.displayName}
+                  </p>
+                  <p className=" text-secondary font-semibold">{user?.email}</p>
+                  <div className="flex gap-2.5">
+                    <button className="btn btn-secondary text-base-100 mt-2">
+                      Edit
+                    </button>
+                    <button
+                      onClick={handleSignOut}
+                      className="btn btn-outline hover:bg-secondary hover:text-base-100 mt-2"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
 
-                {/* {user ? (
+                  {/* {user ? (
                 <div className="flex flex-col items-center gap-2">
                   <img
                     src={
@@ -153,8 +181,9 @@ const Navbar = () => {
                     className="btn w-full mt-5 text-secondary bg-white"
                   >
                     Sign Out */}
-                {/* </button> */}
-              </div>
+                  {/* </button> */}
+                </div>
+              )}
               {/* ) : (
                 <Link
                   to={"/auth/login"}

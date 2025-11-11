@@ -12,7 +12,6 @@ const Home = () => {
       {/* <Feature></Feature> */}
       <FearturedRealState></FearturedRealState>
       <WhyChooseUS></WhyChooseUS>
-      <Footer></Footer>
     </div>
   );
 };

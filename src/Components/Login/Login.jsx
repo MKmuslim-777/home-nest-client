@@ -1,8 +1,15 @@
+import { GoogleAuthProvider } from "firebase/auth";
+import { use } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { user, signInWithGoogle, setUser } = use(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -10,7 +17,14 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    toast.info("Redirecting to Google login...");
+    signInWithGoogle(googleProvider)
+      .then((result) => {
+        toast.success("Signing Successful with google!");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error);
+      });
   };
 
   return (

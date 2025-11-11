@@ -31,6 +31,7 @@ const PropertyDetails = () => {
     postedDate,
     postedBy,
   } = property;
+  //   console.log(postedBy.name);
 
   return (
     <div className="bg-gray-50 min-h-screen p-4 md:p-8 lg:p-12">
@@ -81,7 +82,7 @@ const PropertyDetails = () => {
           {/* Poster Information Card */}
           <div className="card bg-base-100 shadow-xl border border-gray-100 p-6">
             <h3 className="text-xl font-bold text-secondary mb-4 flex items-center">
-              <HiOutlineUserCircle className="w-6 h-6 mr-2" /> {postedBy.name}
+              <HiOutlineUserCircle className="w-6 h-6 mr-2" /> {postedBy?.name}
             </h3>
             <div className="flex items-center space-x-4">
               <div className="avatar">

@@ -1,22 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MyPropertyCard from "../MyPropertyCard/MyPropertyCard";
 import { Commet } from "react-loading-indicators";
 import { useLoaderData } from "react-router";
 import { MdAddCircleOutline } from "react-icons/md";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const MyProperties = () => {
-  //   const [property, setProperty] = useState();
   const [loading, setLoading] = useState(false);
   const property = useLoaderData();
-  //   useEffect(() => {
-  //     axios.get("http://localhost:3000/properties").then((data) => {
-  //       //   console.log(data.data);
-  //       setLoading(false);
-  //       setProperty(data.data);
-  //       setLoading(true);
-  //     });
-  //   }, []);
 
   const handlePropertySubmit = (e) => {
     e.preventDefault();

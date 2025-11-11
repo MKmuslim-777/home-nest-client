@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$/;
 
 const Register = () => {
   const [passwordError, setPasswordError] = useState("");
+
+  const { user, signInWithGoogle, setUser, createWithEmailPass } =
+    use(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,11 +41,26 @@ const Register = () => {
 
     console.log(name, email, password, photoURL);
 
+    createWithEmailPass(email, password, photoURL)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     toast.success("Registration successful! Proceeding...");
   };
 
   const handleGoogleLogin = () => {
-    toast.info("Redirecting to Google login...");
+    signInWithGoogle(googleProvider)
+      .then((result) => {
+        toast.success("Signing Successful with google !");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error);
+      });
   };
 
   return (
