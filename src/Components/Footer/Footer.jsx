@@ -73,6 +73,14 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
+      <footer className="footer sm:footer-horizontal footer-center bg-secondary/70 text-base-content p-4">
+        <aside>
+          <p className="text-base-100">
+            Copyright © {new Date().getFullYear()} - All right reserved by
+            HomeNest
+          </p>
+        </aside>
+      </footer>
     </div>
   );
 };
