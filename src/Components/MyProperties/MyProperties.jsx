@@ -52,6 +52,7 @@ const MyProperties = () => {
       .then((data) => {
         if (data.insertedId) {
           form.reset();
+          // window.location.reload();
           toast.success("Successfully Published Your Property!");
 
           const modal = document.getElementById("my_modal_5");

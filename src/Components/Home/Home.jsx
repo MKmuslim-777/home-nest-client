@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 
 const Home = () => {
   return (
-    <div className="w-full">
+    <div className="">
       <BannerContainer></BannerContainer>
       {/* <Feature></Feature> */}
       <FearturedRealState></FearturedRealState>

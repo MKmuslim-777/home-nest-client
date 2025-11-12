@@ -26,7 +26,8 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {
-          console.log(data);
+          window.location.reload();
+          // console.log(data);
           toast.success("Deleted Successfully!");
         }
       });

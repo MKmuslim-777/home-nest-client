@@ -28,7 +28,7 @@ const AllProperties = () => {
   }
   const propertyData = useLoaderData();
   return (
-    <div className="md:container mx-auto">
+    <div className="">
       <div className="text-center flex justify-center items-center">
         <h2 className="text-5xl font-bold text-secondary text-center my-10">
           All Properties
@@ -39,7 +39,7 @@ const AllProperties = () => {
           className="w-[50px]"
         />
       </div>
-      <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 my-10">
+      <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 my-10 md:w-11/12 mx-auto">
         {propertyData.map((card) => (
           <PropertyCard card={card}></PropertyCard>
         ))}

@@ -116,55 +116,58 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <div className="rounded-full dropdown dropdown-hover  ">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-primary btn-circle "
-            >
-              {/* user photo */}
-              <img
-                src={
-                  user
-                    ? user?.photoURL
-                    : "https://img.icons8.com/puffy-filled/32/user.png"
-                }
-                className="rounded-full w-[33px]"
-                alt="User Image"
-              />
-            </div>
-            <div
-              tabIndex="-1"
-              className="dropdown-content menu bg-base-100 rounded-box z-1 w-[270px] p-2 shadow-sm flex flex-col justify-center items-center outline-none"
-            >
-              {user && (
-                <div className="flex flex-col items-center">
-                  <img
-                    src={
-                      user
-                        ? user?.photoURL
-                        : "https://img.icons8.com/puffy-filled/32/user.png"
-                    }
-                    className="rounded-full w-[90px] border border-secondary"
-                    alt="User Profile"
-                  />
-                  <p className=" text-secondary mt-2 font-semibold">
-                    {user?.displayName}
-                  </p>
-                  <p className=" text-secondary font-semibold">{user?.email}</p>
-                  <div className="flex gap-2.5">
-                    <button className="btn btn-secondary text-base-100 mt-2">
-                      Edit
-                    </button>
-                    <button
-                      onClick={handleSignOut}
-                      className="btn btn-outline hover:bg-secondary hover:text-base-100 mt-2"
-                    >
-                      Sign Out
-                    </button>
+          <div className="">
+            <div className="dropdown dropdown-bottom dropdown-end ">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-outline btn-circle"
+              >
+                <img
+                  src={
+                    user
+                      ? user?.photoURL
+                      : "https://img.icons8.com/puffy-filled/32/user.png"
+                  }
+                  className="rounded-full w-[33px]"
+                  alt="User Image"
+                />
+              </div>
+              <ul
+                tabIndex="-1"
+                className="dropdown-content menu bg-base-100 rounded-box z-1 w-[270px] p-2 shadow-sm"
+              >
+                {user && (
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={
+                        user
+                          ? user?.photoURL
+                          : "https://img.icons8.com/puffy-filled/32/user.png"
+                      }
+                      className="rounded-full w-[30px] border border-secondary"
+                      alt="User Profile"
+                    />
+                    <p className=" text-secondary mt-2 font-semibold">
+                      {user?.displayName}
+                    </p>
+                    <p className=" text-secondary font-semibold">
+                      {user?.email}
+                    </p>
+                    <div className="flex gap-2.5">
+                      <button className="btn btn-secondary text-base-100 mt-2">
+                        Edit
+                      </button>
+                      <button
+                        onClick={handleSignOut}
+                        className="btn btn-outline hover:bg-secondary hover:text-base-100 mt-2"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </ul>
             </div>
           </div>
 
