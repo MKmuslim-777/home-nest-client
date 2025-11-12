@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import MyPropertyCard from "../MyPropertyCard/MyPropertyCard";
 import { Commet } from "react-loading-indicators";
 import { data, useLoaderData } from "react-router";
@@ -6,11 +6,37 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
+import axios from "axios";
+import Loading from "../Loading/Loading";
 
 const MyProperties = () => {
   const [loading, setLoading] = useState(false);
   const property = useLoaderData();
   const { user } = use(AuthContext);
+  const [propertyData, setPropertyData] = useState([]);
+
+  useEffect(() => {
+    if (user?.email) {
+      setLoading(true);
+      axios
+        .get(`http://localhost:3000/properties?email=${user?.email}`) // <-
+        .then((response) => {
+          console.log("Fetched Data:", response.data);
+
+          setPropertyData(response.data);
+        })
+        .catch((error) => {
+          console.error("API Call Error:", error);
+
+          toast.error("Failed to fetch properties.");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [user?.email]);
+
+  console.log(propertyData);
 
   const handlePropertySubmit = (e) => {
     e.preventDefault();
@@ -70,7 +96,7 @@ const MyProperties = () => {
   };
 
   if (loading) {
-    <Commet color="#32cd32" size="medium" text="" textColor="" />;
+    return <Loading></Loading>;
   }
   // console.log(property);
   return (
@@ -297,11 +323,15 @@ const MyProperties = () => {
         </dialog>
       </div>
 
-      <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 mb-10 mx-auto">
-        {property.map((card) => (
-          <MyPropertyCard key={card._id} card={card}></MyPropertyCard>
-        ))}
-      </div>
+      {propertyData ? (
+        <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 mb-10 mx-auto">
+          {propertyData.map((card) => (
+            <MyPropertyCard key={card._id} card={card}></MyPropertyCard>
+          ))}
+        </div>
+      ) : (
+        <h3>You Have not Published Any property</h3>
+      )}
     </div>
   );
 };

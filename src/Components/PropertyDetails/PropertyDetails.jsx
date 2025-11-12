@@ -7,7 +7,7 @@ import {
   HiTag,
   HiCurrencyDollar,
 } from "react-icons/hi";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const PropertyDetails = () => {
@@ -111,9 +111,12 @@ const PropertyDetails = () => {
               </div>
 
               {/* Contact Button */}
-              <button className="btn btn-secondary w-full mt-6 text-white text-lg">
+              <Link
+                to={"https://github.com/MKmuslim-777"}
+                className="btn btn-secondary w-full mt-6 text-white text-lg"
+              >
                 Contact Agent
-              </button>
+              </Link>
             </div>
 
             {/* Quick Facts Card (If you had more data like size, beds, baths) */}

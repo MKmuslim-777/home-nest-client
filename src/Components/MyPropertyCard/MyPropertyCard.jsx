@@ -5,26 +5,38 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { IoClose } from "react-icons/io5";
+import Loading from "../Loading/Loading";
+import UpdateProperty from "../UpdateProperty/UpdateProperty";
 
-const propertyData = {
-  imageUrl:
-    "https://i.ibb.co.com/F4Q0FmCq/digital-marketing-agency-ntwrk-g39p1k-Djv-SY-unsplash.jpg",
-  status: "For Sale",
-  price: 550000,
-  title: "Modern Suburban Family Home",
-  location: "123 Serene View Dr, Cityville, CA",
-  beds: 4,
-  baths: 3,
-  sqft: 2800,
-};
+// const propertyData = {
+//   imageUrl:
+//     "https://i.ibb.co.com/F4Q0FmCq/digital-marketing-agency-ntwrk-g39p1k-Djv-SY-unsplash.jpg",
+//   status: "For Sale",
+//   price: 550000,
+//   title: "Modern Suburban Family Home",
+//   location: "123 Serene View Dr, Cityville, CA",
+//   beds: 4,
+//   baths: 3,
+//   sqft: 2800,
+// };
 
-const MyPropertyCard = ({ property = propertyData, card }) => {
-  const [myProperties, setMyProperties] = useState([]);
+const MyPropertyCard = ({ card }) => {
   const { user } = use(AuthContext);
+  const [fetchData, setFetchData] = useState();
+  const [loading, setLoading] = useState(false);
 
-  const showModal = () => {
-    document.getElementById("my_modal_4").showModal();
-  };
+  // const updateModal = (_id) => {
+  //   document.getElementById("my_modal_4").showModal();
+  //   setLoading(true);
+  //   fetch(`https://home-nest-server-ivory.vercel.app/properties/${_id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setLoading(false);
+  //       setFetchData(data);
+  //     });
+  // };
+  const simpleData = fetchData;
+  // console.log(simpleData);
 
   const handleDeleteProperty = (_id) => {
     fetch(`https://home-nest-server-ivory.vercel.app/properties/${_id}`, {
@@ -40,19 +52,33 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
       });
   };
 
-  const modalClose = () => {
-    const modal = document.getElementById("my_modal_4");
-    modal.close();
-  };
+  // const modalClose = () => {
+  //   const modal = document.getElementById("my_modal_4");
+  //   modal.close();
+  // };
 
-  const handlePropertyUpdate = (e) => {
-    e.preventDefault();
-    const modal = document.getElementById("my_modal_4");
-    modal.close();
-  };
+  // const handlePropertyUpdate = (e) => {
+  //   e.preventDefault();
+  //   const modal = document.getElementById("my_modal_4");
+  //   modal.close();
+  // };
 
   // console.log(card._id);
-  const { location, price, propertyImage, propertyName, _id } = card;
+  const {
+    beds,
+    baths,
+    sqft,
+    location,
+    price,
+    propertyImage,
+    propertyName,
+    _id,
+  } = card;
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
@@ -90,29 +116,28 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
           <div className="flex justify-around pt-3 text-sm font-medium text-gray-700">
             <div className="flex items-center space-x-1">
               <FaBed className="text-lg text-accent" />
-              <span>{property.beds} Beds</span>
+              <span>{beds} Beds</span>
             </div>
 
             <div className="flex items-center space-x-1">
               <FaBath className="text-lg text-accent" />
-              <span>{property.baths} Baths</span>
+              <span>{baths} Baths</span>
             </div>
 
             <div className="flex items-center space-x-1">
               <FaRulerCombined className="text-lg text-accent" />
-              <span>{property.sqft} SqFt</span>
+              <span>{sqft} SqFt</span>
             </div>
           </div>
 
           <div className="card-actions w-full justify-between mt-4">
-            <button
+            <Link
               className="btn btn-sm bg-[#00d3bb] text-base-100 border-none"
-              onClick={() => {
-                showModal();
-              }}
+              // onClick={() => updateModal(_id)}
+              to={`/updateProperty/${_id}`}
             >
               Edit
-            </button>
+            </Link>
             <Link
               to={`/propertyDetails/${_id}`}
               className="btn btn-sm btn-secondary text-base-100"
@@ -129,210 +154,6 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
         </div>
       </div>
       {/* Update modal form */}
-      <div className="justify-end">
-        <dialog id="my_modal_4" className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
-            <form onSubmit={handlePropertyUpdate} method="dialog">
-              <div className="flex justify-between items-center">
-                <div></div>
-                <h3 className="font-bold text-lg text-center my-5">
-                  Update Property
-                </h3>
-                <div>
-                  <IoClose onClick={modalClose} />
-                </div>
-              </div>
-
-              <div className="form-control">
-                <div className="flex gap-2.5">
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Name</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="text"
-                        name="name"
-                        defaultValue={user?.displayName}
-                        readOnly
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Email</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="email"
-                        name="email"
-                        defaultValue={user?.email}
-                        readOnly
-                        className="input input-bordered w-[260px] "
-                        required
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">
-                    Property Name
-                  </span>
-                </label>
-                <label className="input-group">
-                  <input
-                    type="text"
-                    name="propertyName"
-                    placeholder="Property Name"
-                    className="input input-bordered w-full"
-                    required
-                  />
-                </label>
-
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">Category</span>
-                </label>
-                <label className="input-group">
-                  <select
-                    defaultValue="Category"
-                    name="category"
-                    className="select w-full"
-                  >
-                    <option disabled={true}>Category</option>
-                    <option>Residential-Apartment</option>
-                    <option>AmberResidential-House</option>
-                    <option>Commercial-Office</option>
-                    <option>Commercial-Retail</option>
-                    <option>Land-Residential</option>
-                    <option>Land-Commercial</option>
-                    <option>Industrial-Warehouse</option>
-                    <option>Special-Holiday</option>
-                  </select>
-                </label>
-
-                {/* Beds, Baths, SqFt */}
-                <div className="flex gap-2.5">
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Beds</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="number"
-                        name="beds"
-                        placeholder="Beds"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Baths</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="number"
-                        name="baths"
-                        placeholder="Baths"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">SqFt</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="number"
-                        name="sqft"
-                        placeholder="SqFt"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="flex gap-2.5">
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">
-                        Property Price
-                      </span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="number"
-                        name="price"
-                        placeholder="Property Price"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">
-                        Location
-                      </span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="text"
-                        name="location"
-                        placeholder="State Location"
-                        className="input input-bordered w-[250px]"
-                        required
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">
-                    Property Image URL
-                  </span>
-                </label>
-                <label className="input-group">
-                  <input
-                    type="text"
-                    name="propertyImageUrl"
-                    placeholder="https://example.com/profile.jpg"
-                    className="input input-bordered w-full"
-                    required
-                  />
-                </label>
-
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">Description</span>
-                </label>
-                <label className="input-group">
-                  <textarea
-                    type="text"
-                    name="description"
-                    placeholder="About Property"
-                    className="textarea w-full"
-                    required
-                  />
-                </label>
-              </div>
-              <button className="btn btn-secondary w-full mt-2.5 text-base-100">
-                Add Property
-              </button>
-            </form>
-          </div>
-        </dialog>
-      </div>
     </div>
   );
 };

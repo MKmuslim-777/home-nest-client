@@ -48,7 +48,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "updateProperty",
+        path: "/updateProperty/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://home-nest-server-ivory.vercel.app/properties/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <UpdateProperty></UpdateProperty>

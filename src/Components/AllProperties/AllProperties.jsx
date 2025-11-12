@@ -3,30 +3,35 @@ import React, { useEffect, useState } from "react";
 import PropertyCard from "../PropertyCard/PropertyCard";
 import { Commet } from "react-loading-indicators";
 import { useLoaderData } from "react-router";
+import Loading from "../Loading/Loading";
+import { toast } from "react-toastify";
 
 const AllProperties = () => {
-  const [property, setProperty] = useState(null);
+  const [property, setProperty] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    // axios.get("https://home-nest-server-ivory.vercel.app/properties").then((data) => {
-    //   setProperty(data);
-    //   setLoading(false);
-    //   console.log(property);
-    // });
+    setLoading(true);
+    axios
+      .get(`http://localhost:3000/properties`) // <-
+      .then((response) => {
+        console.log("Fetched Data:", response.data);
+
+        setProperty(response.data);
+      })
+      .catch((error) => {
+        console.error("API Call Error:", error);
+
+        toast.error("Failed to fetch properties.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
-  // fetch("https://home-nest-server-ivory.vercel.app/properties")
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     setProperty(data);
-  //     setLoading(false);
-  //   });
-  // console.log(property);
-
   if (loading) {
-    <Commet color="#32cd32" size="medium" text="" textColor="" />;
+    return <Loading></Loading>;
   }
-  const propertyData = useLoaderData();
+  // const propertyData = useLoaderData();
   return (
     <div className="">
       <div className="text-center flex justify-center items-center">
@@ -40,7 +45,7 @@ const AllProperties = () => {
         />
       </div>
       <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 my-10 md:w-11/12 mx-auto">
-        {propertyData.map((card) => (
+        {property.map((card) => (
           <PropertyCard card={card}></PropertyCard>
         ))}
       </div>
