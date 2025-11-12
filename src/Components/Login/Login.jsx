@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import { use, useRef } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
@@ -10,6 +10,7 @@ const Login = () => {
     use(AuthContext);
   const emailRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -49,6 +50,7 @@ const Login = () => {
     signInWithGoogle(googleProvider)
       .then((result) => {
         toast.success("Signing Successful with google!");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);

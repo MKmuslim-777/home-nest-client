@@ -20,7 +20,7 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
   const [myProperties, setMyProperties] = useState([]);
 
   const handleDeleteProperty = (_id) => {
-    fetch(`http://localhost:3000/properties/${_id}`, {
+    fetch(`https://home-nest-server-ivory.vercel.app/properties/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

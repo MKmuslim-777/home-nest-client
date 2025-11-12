@@ -41,7 +41,7 @@ const MyProperties = () => {
       },
     };
 
-    fetch("http://localhost:3000/properties", {
+    fetch("https://home-nest-server-ivory.vercel.app/properties", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -67,7 +67,8 @@ const MyProperties = () => {
   }
   // console.log(property);
   return (
-    <div className="container">
+    <div className="container mx-auto">
+      <title>HomeNest | My Properties</title>
       <div className="text-center flex justify-center items-center">
         <h2 className="text-5xl font-bold text-secondary text-center my-10">
           My Properties
@@ -283,7 +284,7 @@ const MyProperties = () => {
         </dialog>
       </div>
 
-      <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 mb-10">
+      <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 mb-10 mx-auto">
         {property.map((card) => (
           <MyPropertyCard key={card._id} card={card}></MyPropertyCard>
         ))}

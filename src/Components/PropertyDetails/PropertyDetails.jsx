@@ -16,10 +16,12 @@ const PropertyDetails = () => {
   const [property, setProperty] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/properties/${productId}`).then((data) => {
-      // console.log("after axios get", data);
-      setProperty(data.data);
-    });
+    axios
+      .get(`https://home-nest-server-ivory.vercel.app/properties/${productId}`)
+      .then((data) => {
+        // console.log("after axios get", data);
+        setProperty(data.data);
+      });
   }, [productId]);
   console.log(property);
 

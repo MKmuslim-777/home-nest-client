@@ -7,6 +7,7 @@ import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import MyProperties from "../Components/MyProperties/MyProperties";
 import PropertyDetails from "../Components/PropertyDetails/PropertyDetails";
+import PrivateRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
   {
@@ -20,18 +21,30 @@ const router = createBrowserRouter([
       {
         path: "/AllProperties",
         Component: AllProperties,
-        loader: () => fetch("http://localhost:3000/properties"),
+        loader: () =>
+          fetch("https://home-nest-server-ivory.vercel.app/properties"),
       },
       {
         path: "/myProperties",
-        Component: MyProperties,
-        loader: () => fetch("http://localhost:3000/properties"),
+        element: (
+          <PrivateRoute>
+            <MyProperties></MyProperties>
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch("https://home-nest-server-ivory.vercel.app/properties"),
       },
       {
         path: "/propertyDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/properties/${params.id}`),
-        element: <PropertyDetails></PropertyDetails>,
+          fetch(
+            `https://home-nest-server-ivory.vercel.app/properties/${params.id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <PropertyDetails></PropertyDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },

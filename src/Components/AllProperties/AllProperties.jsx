@@ -8,14 +8,14 @@ const AllProperties = () => {
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    // axios.get("http://localhost:3000/properties").then((data) => {
+    // axios.get("https://home-nest-server-ivory.vercel.app/properties").then((data) => {
     //   setProperty(data);
     //   setLoading(false);
     //   console.log(property);
     // });
   }, []);
 
-  // fetch("http://localhost:3000/properties")
+  // fetch("https://home-nest-server-ivory.vercel.app/properties")
   //   .then((res) => res.json())
   //   .then((data) => {
   //     setProperty(data);
