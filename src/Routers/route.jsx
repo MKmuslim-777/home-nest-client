@@ -8,6 +8,7 @@ import Register from "../Components/Register/Register";
 import MyProperties from "../Components/MyProperties/MyProperties";
 import PropertyDetails from "../Components/PropertyDetails/PropertyDetails";
 import PrivateRoute from "./PrivetRoute";
+import UpdateProperty from "../Components/UpdateProperty/UpdateProperty";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PropertyDetails></PropertyDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "updateProperty",
+        element: (
+          <PrivateRoute>
+            <UpdateProperty></UpdateProperty>
           </PrivateRoute>
         ),
       },
