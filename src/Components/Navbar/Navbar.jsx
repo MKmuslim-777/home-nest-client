@@ -5,8 +5,6 @@ import { MdPermContactCalendar } from "react-icons/md";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
-// import logo from "../assets/company_image/toytopia.png";
-// import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, handlesignOut } = use(AuthContext);
@@ -62,16 +60,18 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
-      <li className="mr-5">
-        <NavLink
-          to={"/myProperties"}
-          className={
-            "font-semibold text-secondary text-[18px] hover:bg-transparent"
-          }
-        >
-          My Properties
-        </NavLink>
-      </li>
+      {user && (
+        <li className="mr-5">
+          <NavLink
+            to={"/myProperties"}
+            className={
+              "font-semibold text-secondary text-[18px] hover:bg-transparent"
+            }
+          >
+            My Properties
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -122,6 +122,7 @@ const Navbar = () => {
               role="button"
               className="btn btn-primary btn-circle "
             >
+              {/* user photo */}
               <img
                 src={
                   user
@@ -162,41 +163,11 @@ const Navbar = () => {
                       Sign Out
                     </button>
                   </div>
-
-                  {/* {user ? (
-                <div className="flex flex-col items-center gap-2">
-                  <img
-                    src={
-                      user.photoURL ||
-                      "https://img.icons8.com/puffy-filled/32/user.png"
-                    }
-                    className="rounded-full w-[90px]"
-                    alt="User Profile"
-                  />
-                  <p className="text-[18px] mt-2.5 font-semibold">
-                    {user.displayName || "User"}
-                  </p>
-                  <button
-                    onClick={handleSignOut}
-                    className="btn w-full mt-5 text-secondary bg-white"
-                  >
-                    Sign Out */}
-                  {/* </button> */}
                 </div>
               )}
-              {/* ) : (
-                <Link
-                  to={"/auth/login"}
-                  className="btn ml-5 text-white bg-secondary"
-                >
-                  Sign In
-                </Link>
-              )} */}
             </div>
           </div>
-          {/* <Link to={"/auth/login"} className="myBtn ml-3.5">
-            Sign Up
-          </Link> */}
+
           <Link to={"/auth/login"} className="myBtn ml-3.5">
             Sign In
           </Link>

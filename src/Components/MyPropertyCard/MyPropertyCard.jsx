@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 
 const propertyData = {
   imageUrl:
@@ -16,6 +17,21 @@ const propertyData = {
 };
 
 const MyPropertyCard = ({ property = propertyData, card }) => {
+  const [myProperties, setMyProperties] = useState([]);
+
+  const handleDeleteProperty = (_id) => {
+    fetch(`http://localhost:3000/properties/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount) {
+          console.log(data);
+          toast.success("Deleted Successfully!");
+        }
+      });
+  };
+
   // console.log(card._id);
   const { location, price, propertyImage, propertyName, _id } = card;
   return (
@@ -76,7 +92,10 @@ const MyPropertyCard = ({ property = propertyData, card }) => {
           >
             View Details
           </Link>
-          <button className="btn btn-sm bg-red-600 border-none text-base-100">
+          <button
+            onClick={() => handleDeleteProperty(_id)}
+            className="btn btn-sm bg-red-600 border-none text-base-100"
+          >
             Delete
           </button>
         </div>

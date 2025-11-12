@@ -16,7 +16,7 @@ const BannerOne = () => {
               alt=""
             />
           </div>
-          <h1 className="text-4xl text-secondary font-bold mt-12">
+          <h1 className="md:text-4xl text-2xl text-secondary font-bold mt-12">
             Contemporary <br /> Poolside Villa
           </h1>
           <p className="text-secondary font-semibold mt-8">
@@ -26,8 +26,8 @@ const BannerOne = () => {
           </p>
         </div>
         <div className="flex items-center justify-between mt-8">
-          <p className="text-3xl font-bold text-secondary ">$15K</p>
-          <button className="myBtn">Know More</button>
+          <p className="md:text-3xl text-2xl font-bold text-secondary ">$15K</p>
+          <button className="myBtn ">Know More</button>
         </div>
       </div>
     </div>

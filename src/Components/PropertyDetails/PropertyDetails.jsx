@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import {
   HiOutlineLocationMarker,
   HiOutlineCalendar,
@@ -8,8 +8,10 @@ import {
   HiCurrencyDollar,
 } from "react-icons/hi";
 import { useLoaderData } from "react-router";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const PropertyDetails = () => {
+  const { user } = use(AuthContext);
   const { _id: productId } = useLoaderData();
   const [property, setProperty] = useState([]);
 
@@ -31,7 +33,6 @@ const PropertyDetails = () => {
     postedDate,
     postedBy,
   } = property;
-  //   console.log(postedBy.name);
 
   return (
     <div className="bg-gray-50 min-h-screen p-4 md:p-8 lg:p-12">
@@ -87,17 +88,11 @@ const PropertyDetails = () => {
             <div className="flex items-center space-x-4">
               <div className="avatar">
                 <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img
-                    src={
-                      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    }
-                  />
+                  <img src={`${postedBy?.profilePhotoUrl}`} />
                 </div>
               </div>
               <div>
-                <p className="text-lg font-semibold">
-                  {"postedBy.profilePhotoUrl"}
-                </p>
+                <p className="text-lg font-semibold">{postedBy?.email}</p>
                 <p className="text-sm text-gray-600">Real Estate Agent</p>
               </div>
             </div>

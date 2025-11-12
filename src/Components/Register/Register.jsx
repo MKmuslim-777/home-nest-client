@@ -1,15 +1,17 @@
 import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$/;
+const useRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$/;
 
 const Register = () => {
-  const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
+  const [checkPassword, setCheckPassword] = useState(false);
+  const [eye, setEye] = useState(false);
 
   const { user, signInWithGoogle, setUser, createWithEmailPass } =
     use(AuthContext);
@@ -19,14 +21,11 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "password") {
-      if (!passwordRegex.test(value)) {
-        setPasswordError(
-          "Password must be 6+ characters, and include both uppercase and lowercase letters."
-        );
-      } else {
-        setPasswordError("");
-      }
+    const password = event.target.value;
+    if (!useRegEx.test(password)) {
+      setCheckPassword(true);
+    } else {
+      setCheckPassword(false);
     }
   };
 
@@ -37,25 +36,39 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photoURL = form.photoURL.value;
+    const photoUrl = form.photoURL.value;
 
-    console.log(name, email, password, photoURL);
+    console.log(name, email, password);
 
-    createWithEmailPass(email, password, photoURL)
+    createWithEmailPass(email, password)
       .then((result) => {
         console.log(result);
+        toast.success("Registration successful! Proceeding...");
       })
       .catch((error) => {
         console.log(error);
       });
 
-    toast.success("Registration successful! Proceeding...");
+    updateProfile(user, {
+      displayName: name,
+      email: email,
+      password: password,
+      photoURL: photoUrl,
+    });
+    const userInfo = {
+      displayName: name,
+      email: email,
+      password: password,
+      photoURL: photoUrl,
+    };
+    setUser(userInfo);
   };
 
   const handleGoogleLogin = () => {
     signInWithGoogle(googleProvider)
       .then((result) => {
         toast.success("Signing Successful with google !");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);
@@ -126,17 +139,32 @@ const Register = () => {
             <label className="label">
               <span className="label-text text-secondary">Password</span>
             </label>
-            <label className="input-group">
+            <label className="input-group relative">
               <input
-                type="password"
+                type={eye ? "text" : "password"}
                 name="password"
                 onChange={handleChange}
                 placeholder="********"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full z-1"
                 required
               />
-            </label>
 
+              <span
+                onClick={() => setEye(!eye)}
+                className="absolute top-1 left-110 z-10"
+              >
+                {eye ? (
+                  <FaEyeSlash className="text-sm" />
+                ) : (
+                  <FaEye className="text-sm" />
+                )}
+              </span>
+            </label>
+            {checkPassword && (
+              <p className="text-red-500 mt-2.5">
+                Weak password! Try mixing letters, numbers & symbols.
+              </p>
+            )}
             {/* Link to Login Page */}
             <label className="label justify-center pt-4">
               <p className="label-text-alt text-gray-600">

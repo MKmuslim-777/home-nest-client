@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router";
 const Footer = () => {
   return (
     <div className="bg-primary w-full">
-      <footer className="footer sm:footer-horizontal md:w-11/12 mx-auto text-base-content h-[30vh] p-10 px-20">
+      <footer className="footer sm:footer-horizontal md:w-11/12 mx-auto text-base-content  p-10 px-20">
         <aside>
           <Link to={"/"}>
             <img

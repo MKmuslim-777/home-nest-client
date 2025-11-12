@@ -66,18 +66,18 @@ const PropertyCard = ({ property = propertyData, card }) => {
         </div>
 
         <div className="card-actions w-full justify-between mt-4">
-          <button className="btn btn-sm bg-[#00d3bb] text-base-100 border-none">
+          {/* <button className="btn btn-sm bg-[#00d3bb] text-base-100 border-none">
             Edit
-          </button>
+          </button> */}
           <Link
             to={`/propertyDetails/${_id}`}
-            className="btn btn-sm btn-secondary text-base-100"
+            className="btn w-full btn-secondary text-base-100"
           >
             View Details
           </Link>
-          <button className="btn btn-sm bg-red-600 border-none text-base-100">
+          {/* <button className="btn btn-sm bg-red-600 border-none text-base-100">
             Delete
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

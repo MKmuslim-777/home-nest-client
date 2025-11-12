@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import MyPropertyCard from "../MyPropertyCard/MyPropertyCard";
 import { Commet } from "react-loading-indicators";
-import { useLoaderData } from "react-router";
+import { data, useLoaderData } from "react-router";
 import { MdAddCircleOutline } from "react-icons/md";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const MyProperties = () => {
   const [loading, setLoading] = useState(false);
   const property = useLoaderData();
+  const { user } = use(AuthContext);
 
   const handlePropertySubmit = (e) => {
     e.preventDefault();
@@ -19,21 +21,45 @@ const MyProperties = () => {
     const category = form.category.value;
     const name = form.name.value;
     const email = form.email.value;
+    const description = form.description.value;
 
     const propertyData = {
       propertyName: property,
-      price: price,
+      price: Number(price),
       postedDate: new Date().toLocaleDateString(),
       location: location,
       category: category,
+      propertyImage: form.propertyImageUrl.value,
+      description: description,
+      beds: Number(form.beds.value),
+      baths: Number(form.baths.value),
+      sqft: Number(form.sqft.value),
       postedBy: {
         name: name,
         email: email,
-        profilePhotoUrl: "https://example.com/profile.jpg",
+        profilePhotoUrl: user.photoURL,
       },
     };
-    form.reset();
-    console.log(propertyData);
+
+    fetch("http://localhost:3000/properties", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(propertyData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          form.reset();
+          toast.success("Successfully Published Your Property!");
+
+          const modal = document.getElementById("my_modal_5");
+          if (modal) {
+            modal.close();
+          }
+        }
+      });
   };
 
   if (loading) {
@@ -76,7 +102,8 @@ const MyProperties = () => {
                       <input
                         type="text"
                         name="name"
-                        placeholder="Your Name"
+                        defaultValue={user?.displayName}
+                        readOnly
                         className="input input-bordered w-full"
                         required
                       />
@@ -91,7 +118,8 @@ const MyProperties = () => {
                       <input
                         type="email"
                         name="email"
-                        placeholder="Your Email"
+                        defaultValue={user?.email}
+                        readOnly
                         className="input input-bordered w-[260px] "
                         required
                       />
@@ -134,6 +162,54 @@ const MyProperties = () => {
                     <option>Special-Holiday</option>
                   </select>
                 </label>
+
+                {/* Beds, Baths, SqFt */}
+                <div className="flex gap-2.5">
+                  <div>
+                    <label className="label mt-2.5">
+                      <span className="label-text text-secondary">Beds</span>
+                    </label>
+                    <label className="input-group ">
+                      <input
+                        type="number"
+                        name="beds"
+                        placeholder="Beds"
+                        className="input input-bordered w-full"
+                        required
+                      />
+                    </label>
+                  </div>
+
+                  <div>
+                    <label className="label mt-2.5">
+                      <span className="label-text text-secondary">Baths</span>
+                    </label>
+                    <label className="input-group ">
+                      <input
+                        type="number"
+                        name="baths"
+                        placeholder="Baths"
+                        className="input input-bordered w-full"
+                        required
+                      />
+                    </label>
+                  </div>
+
+                  <div>
+                    <label className="label mt-2.5">
+                      <span className="label-text text-secondary">SqFt</span>
+                    </label>
+                    <label className="input-group ">
+                      <input
+                        type="number"
+                        name="sqft"
+                        placeholder="SqFt"
+                        className="input input-bordered w-full"
+                        required
+                      />
+                    </label>
+                  </div>
+                </div>
 
                 <div className="flex gap-2.5">
                   <div>
@@ -192,7 +268,7 @@ const MyProperties = () => {
                 <label className="input-group">
                   <textarea
                     type="text"
-                    name="propertyImageUrl"
+                    name="description"
                     placeholder="About Property"
                     className="textarea w-full"
                     required

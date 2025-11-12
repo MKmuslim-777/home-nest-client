@@ -1,19 +1,48 @@
 import { GoogleAuthProvider } from "firebase/auth";
-import { use } from "react";
+import { use, useRef } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { user, signInWithGoogle, setUser } = use(AuthContext);
+  const { user, signInWithGoogle, setUser, signIn, forgetPassword } =
+    use(AuthContext);
+  const emailRef = useRef(null);
+  const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
 
+  const handleForget = (event) => {
+    const email = emailRef.current.value;
+    console.log(email);
+    forgetPassword(email)
+      .then(() => {
+        toast.success("Check Your Email!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // console.log(email);
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
-    toast.success("Attempting to log in...");
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        setUser(result.user);
+        toast.success("You are Successfully Sign In");
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        toast.error(error.massage);
+      });
   };
 
   const handleGoogleLogin = () => {
@@ -70,9 +99,12 @@ const Login = () => {
               />
             </label>
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              <Link
+                onClick={handleForget}
+                className="label-text-alt link link-hover"
+              >
                 Forgot password?
-              </a>
+              </Link>
             </label>
           </div>
 
