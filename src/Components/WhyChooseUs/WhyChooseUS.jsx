@@ -6,7 +6,7 @@ const WhyChooseUS = () => {
       {" "}
       {/* Added a light background for contrast */}
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-12">
           Why Choose Us
         </h2>
 
@@ -17,7 +17,7 @@ const WhyChooseUS = () => {
               src="https://img.icons8.com/dotty/80/property.png"
               alt=""
             />
-            <p className="text-xl font-bold text-secondary">
+            <p className="md:text-xl text-lg font-bold text-secondary">
               PROPERTY MANAGEMENT
             </p>
             <p className="text-secondary text-center">
@@ -32,7 +32,7 @@ const WhyChooseUS = () => {
               src="https://img.icons8.com/ios/50/key-exchange.png"
               alt=""
             />
-            <p className="text-xl font-bold text-secondary">
+            <p className="md:text-xl text-lg font-bold text-secondary">
               Mortgage Services
             </p>
             <p className="text-secondary text-center">
@@ -47,7 +47,7 @@ const WhyChooseUS = () => {
               src="https://img.icons8.com/carbon-copy/100/trust.png"
               alt=""
             />
-            <p className="text-xl font-bold text-secondary">
+            <p className="md:text-xl text-lg font-bold text-secondary">
               TRUSTED BY THOUSANDS
             </p>
             <p className="text-secondary text-center">

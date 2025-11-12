@@ -2,7 +2,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 const BannerOne = () => {
   return (
-    <div className="bg-base-100 mr-40 w-[580px] opacity-90 h-[400px] p-12 rounded-lg ">
+    <div className="bg-base-100 mr-40 w-[580px] opacity-90 h-[400px] p-12 rounded-lg md:block hidden">
       <div className="">
         <div>
           <div className="flex  justify-between items-center relative">

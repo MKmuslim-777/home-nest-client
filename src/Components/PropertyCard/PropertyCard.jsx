@@ -18,7 +18,7 @@ const propertyData = {
 const PropertyCard = ({ property = propertyData, card }) => {
   const { location, price, propertyImage, propertyName, _id } = card;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
       <figure className="relative h-56">
         <img
           src={propertyImage}

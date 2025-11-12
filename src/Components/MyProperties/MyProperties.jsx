@@ -103,18 +103,18 @@ const MyProperties = () => {
     <div className="container mx-auto">
       <title>HomeNest | My Properties</title>
       <div className="text-center flex justify-center items-center">
-        <h2 className="text-5xl font-bold text-secondary text-center my-10">
+        <h2 className="md:text-5xl text-3xl font-bold text-secondary text-center my-10">
           My Properties
         </h2>
         <img
           src="https://img.icons8.com/badges/48/property.png"
           alt=""
-          className="w-[50px]"
+          className="w-[50px] md:block hidden"
         />
       </div>
-      <div className="justify-end">
+      <div className="justify-end px-2.5 ">
         <button
-          className="btn btn-secondary text-base-100 mb-3.5"
+          className="btn btn-secondary text-base-100 mb-3.5 md:w-0 w-full"
           onClick={() => document.getElementById("my_modal_5").showModal()}
         >
           <MdAddCircleOutline /> Add New Property
@@ -324,7 +324,7 @@ const MyProperties = () => {
       </div>
 
       {propertyData ? (
-        <div className="grid md:grid-cols-4 grid-cols-1 md:gap-10 mb-10 mx-auto">
+        <div className="md:container grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-10 gap-2.5 mb-10 mx-auto px-2.5">
           {propertyData.map((card) => (
             <MyPropertyCard key={card._id} card={card}></MyPropertyCard>
           ))}

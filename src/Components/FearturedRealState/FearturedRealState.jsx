@@ -13,7 +13,7 @@ const FearturedRealState = () => {
   }, []);
   return (
     <div>
-      <h2 className="text-5xl font-bold text-center mt-40 text-secondary">
+      <h2 className="md:text-5xl text-3xl font-bold text-center mt-40 text-secondary">
         Featured Real Estate
       </h2>
       <div>{}</div>

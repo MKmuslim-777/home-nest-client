@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router";
 const Footer = () => {
   return (
     <div className="bg-primary w-full">
-      <footer className="footer sm:footer-horizontal md:w-11/12 mx-auto text-base-content  p-10 px-20">
+      <footer className="footer sm:footer-horizontal md:w-11/12 mx-auto text-base-content py-10 md:px-20 px-8">
         <aside>
           <Link to={"/"}>
             <img
@@ -17,10 +17,12 @@ const Footer = () => {
             />
           </Link>
           <p className="text-secondary">
-            Searching for your dream property shouldn't feel like <br /> a
-            chore. At HomeNest, we simplify the search, offering <br /> curated
-            listings and expert guidance to help you find <br /> your perfect
-            space—whether it's a cozy apartment or a luxury villa.
+            Searching for your dream property shouldn't feel like{" "}
+            <br className="md:block hidden" /> a chore. At HomeNest, we simplify
+            the search, offering <br className="md:block hidden" /> curated
+            listings and expert guidance to help you FaRulerCombined
+            <br className="md:block hidden" /> your perfect space whether it's a
+            cozy apartment or a luxury villa.
           </p>
         </aside>
         <nav>
@@ -75,7 +77,7 @@ const Footer = () => {
       </footer>
       <footer className="footer sm:footer-horizontal footer-center bg-secondary/80 text-base-content p-4">
         <aside>
-          <p className="text-base-100">
+          <p className="text-base-100 md:text-sm text-[12px]">
             Copyright © {new Date().getFullYear()} - All right reserved by
             HomeNest
           </p>
