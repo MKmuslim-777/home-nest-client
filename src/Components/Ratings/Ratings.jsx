@@ -50,13 +50,16 @@ const Ratings = ({ property }) => {
 
     console.log(propertyData);
 
-    fetch(`http://localhost:3000/properties/${property._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(propertyData),
-    })
+    fetch(
+      `https://home-nest-server-ivory.vercel.app/properties/${property._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(propertyData),
+      }
+    )
       .then((res) => res.json())
       .then((response) => {
         if (response.acknowledged) {

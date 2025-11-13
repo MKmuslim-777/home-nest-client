@@ -12,7 +12,7 @@ const AllProperties = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:3000/properties`) // <-
+      .get(`https://home-nest-server-ivory.vercel.app/properties`) // <-
       .then((response) => {
         console.log("Fetched Data:", response.data);
 

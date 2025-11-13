@@ -17,7 +17,7 @@ const FearturedRealState = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/properties")
+      .get("https://home-nest-server-ivory.vercel.app/properties")
       .then((data) => {
         console.log(data.data);
         setProperty(data.data);

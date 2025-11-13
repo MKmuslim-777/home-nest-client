@@ -19,7 +19,9 @@ const MyProperties = () => {
     if (user?.email) {
       setLoading(true);
       axios
-        .get(`http://localhost:3000/properties?email=${user?.email}`) // <-
+        .get(
+          `https://home-nest-server-ivory.vercel.app/properties?email=${user?.email}`
+        ) // <-
         .then((response) => {
           console.log("Fetched Data:", response.data);
 

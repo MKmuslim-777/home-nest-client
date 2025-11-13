@@ -16,7 +16,9 @@ const MyComments = () => {
     if (user?.email) {
       setLoading(true);
       axios
-        .get(`http://localhost:3000/comments?email=${user.email}`) // <-
+        .get(
+          `https://home-nest-server-ivory.vercel.app/comments?email=${user.email}`
+        ) // <-
         .then((response) => {
           console.log("Fetched Data:", response.data);
 

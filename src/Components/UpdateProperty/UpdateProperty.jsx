@@ -35,7 +35,7 @@ const UpdateProperty = () => {
       sqft: Number(form.sqft.value),
     };
 
-    fetch(`http://localhost:3000/properties/${data._id}`, {
+    fetch(`https://home-nest-server-ivory.vercel.app/properties/${data._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
