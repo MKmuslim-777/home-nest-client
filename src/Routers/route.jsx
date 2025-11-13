@@ -10,6 +10,7 @@ import PropertyDetails from "../Components/PropertyDetails/PropertyDetails";
 import PrivateRoute from "./PrivetRoute";
 import UpdateProperty from "../Components/UpdateProperty/UpdateProperty";
 import MyComments from "../Components/MyComments/MyComments";
+import NotFound from "../Components/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
         Component: Register,
       },
     ],
+  },
+  {
+    path: "*",
+    Component: NotFound,
   },
 ]);
 

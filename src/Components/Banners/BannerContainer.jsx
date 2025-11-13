@@ -11,37 +11,24 @@ const BannerContainer = () => {
             backgroundImage: `url(https://i.ibb.co.com/cS981kkz/florian-schmidinger-b-79n-Oqf95-I-unsplash.jpg)`,
           }}
         >
-          <div className="bg-base-100 mr-40 w-[580px] opacity-90 h-[400px] p-12 rounded-lg md:block hidden">
-            <div className="">
-              <div>
-                <div className="flex  justify-between items-center relative">
-                  <div className="flex items-center -mb-5.5 text-secondary underline font-semibold opacity-70">
-                    <FaLocationDot />
-                    <p className="text-[18px] ">Dhaka, Diplomatic Zone</p>
-                  </div>
-                  <img
-                    src="https://i.ibb.co.com/m50xkytX/969540867.png"
-                    className="w-[110px] absolute -top-5 -right-5 "
-                    alt=""
-                  />
-                </div>
-                <h1 className="md:text-4xl text-2xl text-secondary font-bold mt-12">
-                  Contemporary <br /> Poolside Villa
-                </h1>
-                <p className="text-secondary font-semibold mt-8">
-                  An exclusive, contemporary villa designed for sophisticated
-                  indoor-outdoor living. Features floor-to-ceiling glass walls,
-                  a built-in BBQ, and a sparkling private pool.
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-8">
-                <p className="md:text-3xl text-2xl font-bold text-secondary ">
-                  $15K
-                </p>
-                <button className="myBtn ">Know More</button>
-              </div>
-            </div>
+          {/* Blur Layer */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+
+          {/* Text Content */}
+          <div className="relative text-center text-white z-10 md:w-11/12">
+            <h1 className="text-3xl md:text-6xl font-bold mb-3 drop-shadow-lg md:mx-0 mx-2.5">
+              Find the Perfect Place to Grow Your Family
+            </h1>
+            <p className=" md:text-2xl opacity-90 mt-8 md:px-0 px-8">
+              Chic downtown loft with high ceilings, exposed brick, and
+              state-of-the-art appliances.
+            </p>
+
+            <button className="btn btn-accent mt-5 text-secondary hover:text-base-100">
+              Know More
+            </button>
           </div>
+
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a href="#slide3" className="btn btn-circle">
               ❮
@@ -58,33 +45,21 @@ const BannerContainer = () => {
             backgroundImage: `url(https://i.ibb.co.com/F4Q0FmCq/digital-marketing-agency-ntwrk-g39p1k-Djv-SY-unsplash.jpg)`,
           }}
         >
-          <div className="bg-base-100 mr-40 w-[580px] opacity-90 h-[400px] p-12 rounded-lg md:block hidden ">
-            <div className="">
-              <div>
-                <div className="flex  justify-between items-center relative">
-                  <div className="flex items-center -mb-5.5 text-secondary underline font-semibold opacity-70">
-                    <FaLocationDot />
-                    <p className="text-[18px] ">Cox's Bazar, Saintmartin</p>
-                  </div>
-                  <img
-                    src="https://i.ibb.co.com/m50xkytX/969540867.png"
-                    className="w-[110px] absolute -top-5 -right-5 "
-                    alt=""
-                  />
-                </div>
-                <h1 className="text-4xl text-secondary font-bold mt-12">
-                  Modern Loft <br /> Apartment
-                </h1>
-                <p className="text-secondary font-semibold mt-8">
-                  Chic downtown loft with high ceilings, exposed brick, and
-                  state-of-the-art appliances.
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-8">
-                <p className="text-3xl font-bold text-secondary ">$23K</p>
-                <button className="myBtn">Know More</button>
-              </div>
-            </div>
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+
+          {/* Text Content */}
+          <div className="relative text-center text-white z-10 md:w-11/12">
+            <h1 className="text-3xl md:text-6xl font-bold mb-3 drop-shadow-lg md:mx-0 mx-2.5">
+              Find the Perfect Place to Grow Your Family
+            </h1>
+            <p className=" md:text-2xl opacity-90 mt-8 md:px-0 px-8">
+              Discover quiet, tree-lined streets and large yards in our secure,
+              family-friendly neighborhoods. Room to live, room to thrive.
+            </p>
+
+            <button className="btn btn-accent mt-5 text-secondary hover:text-base-100">
+              Know More
+            </button>
           </div>
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a href="#slide1" className="btn btn-circle">
@@ -102,34 +77,22 @@ const BannerContainer = () => {
             backgroundImage: `url(https://i.ibb.co.com/T3r2250/avi-werde-h-Hz4yrvxwl-A-unsplash.jpg)`,
           }}
         >
-          <div className="bg-base-100 mr-40 w-[580px] opacity-90 h-[400px] p-12 rounded-lg md:block hidden">
-            <div className="">
-              <div>
-                <div className="flex  justify-between items-center relative">
-                  <div className="flex items-center -mb-5.5 text-secondary underline font-semibold opacity-70">
-                    <FaLocationDot />
-                    <p className="text-[18px] ">Cox's Bazar, Ocean Paradise</p>
-                  </div>
-                  <img
-                    src="https://i.ibb.co.com/m50xkytX/969540867.png"
-                    className="w-[110px] absolute -top-5 -right-5 "
-                    alt=""
-                  />
-                </div>
-                <h1 className="text-4xl text-secondary font-bold mt-12">
-                  Executive Townhouse
-                </h1>
-                <p className="text-secondary font-semibold mt-8">
-                  A brand new 3-story townhouse offering executive luxury in a
-                  secure gated community. Features a spacious layout, modern
-                  finishes, and an attached garage for ultimate convenience.
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-8">
-                <p className="text-3xl font-bold text-secondary ">$28K</p>
-                <button className="myBtn">Know More</button>
-              </div>
-            </div>
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+
+          {/* Text Content */}
+          <div className="relative text-center text-white z-10 md:w-11/12">
+            <h1 className="text-3xl md:text-6xl font-bold mb-3 drop-shadow-lg md:mx-0 mx-2.5">
+              Secure Your Future with High-Return Property
+            </h1>
+            <p className=" md:text-2xl opacity-90 mt-8 md:px-0 px-8">
+              Invest in rapidly developing areas with high foot traffic and
+              excellent visibility. Ideal spaces for business expansion and
+              growth.
+            </p>
+
+            <button className="btn btn-accent mt-5 text-secondary hover:text-base-100">
+              Know More
+            </button>
           </div>
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a href="#slide2" className="btn btn-circle">

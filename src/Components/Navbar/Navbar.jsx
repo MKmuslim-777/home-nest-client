@@ -6,6 +6,7 @@ import { Link, NavLink } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { GoComment } from "react-icons/go";
+import ThemeToggle from "../ToggleBtn/ThemeToggle";
 
 const Navbar = () => {
   const { user, handlesignOut } = use(AuthContext);
@@ -115,7 +116,9 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
+
         <div className="navbar-end">
+          <ThemeToggle></ThemeToggle>
           <div className="">
             <div className="dropdown dropdown-bottom dropdown-end ">
               <div

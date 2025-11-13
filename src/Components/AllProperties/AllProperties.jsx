@@ -38,15 +38,23 @@ const AllProperties = () => {
         <h2 className="md:text-5xl text-3xl font-bold text-secondary text-center my-10">
           All Properties
         </h2>
+
         <img
           src="https://img.icons8.com/badges/48/property.png"
           alt=""
           className="w-[50px] md:block hidden"
         />
       </div>
+      <div className="mx-auto md:container md:px-80 px-5 mb-10">
+        <p className="text-secondary md:text-[18px] text-center">
+          Browse our complete collection of verified apartments, villas, and
+          commercial properties. Find your dream investment or perfect home
+          today with ease.
+        </p>
+      </div>
       <div className="md:container grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-10 gap-2.5 mb-10 mx-auto px-2.5">
         {property.map((card) => (
-          <PropertyCard card={card}></PropertyCard>
+          <PropertyCard key={card._id} card={card}></PropertyCard>
         ))}
       </div>
     </div>
