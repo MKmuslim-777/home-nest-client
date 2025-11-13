@@ -5,6 +5,7 @@ import { MdPermContactCalendar } from "react-icons/md";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
+import { GoComment } from "react-icons/go";
 
 const Navbar = () => {
   const { user, handlesignOut } = use(AuthContext);
@@ -51,16 +52,15 @@ const Navbar = () => {
       </li>
       <li className="mr-5">
         <NavLink
-          to={"/contact"}
+          to={"/myProperties"}
           className={
             "font-semibold text-secondary text-[18px] hover:bg-transparent"
           }
         >
-          <MdPermContactCalendar />
-          Contact
+          My Properties
         </NavLink>
       </li>
-      {user && (
+      {/* {user && (
         <li className="mr-5">
           <NavLink
             to={"/myProperties"}
@@ -71,12 +71,12 @@ const Navbar = () => {
             My Properties
           </NavLink>
         </li>
-      )}
+      )} */}
     </>
   );
 
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-lg">
       <div className="container navbar ">
         <div className="navbar-start">
           <div className="drawer lg:hidden">
@@ -154,6 +154,16 @@ const Navbar = () => {
                     <p className=" text-secondary font-semibold">
                       {user?.email}
                     </p>
+                    <li>
+                      <NavLink
+                        to={"/myComments"}
+                        className={
+                          "font-semibold text-secondary text-[18px] hover:bg-transparent"
+                        }
+                      >
+                        <GoComment /> My Comments
+                      </NavLink>
+                    </li>
                     <div className="flex gap-2.5">
                       <button className="btn btn-secondary text-base-100 mt-2">
                         Edit

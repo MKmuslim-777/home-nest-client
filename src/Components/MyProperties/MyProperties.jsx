@@ -100,7 +100,7 @@ const MyProperties = () => {
   }
   // console.log(property);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto min-h-[65vh]">
       <title>HomeNest | My Properties</title>
       <div className="text-center flex justify-center items-center">
         <h2 className="md:text-5xl text-3xl font-bold text-secondary text-center my-10">
@@ -114,7 +114,7 @@ const MyProperties = () => {
       </div>
       <div className="justify-end px-2.5 ">
         <button
-          className="btn btn-secondary text-base-100 mb-3.5 md:w-0 w-full"
+          className="btn btn-secondary text-base-100 mb-3.5 md:w-[200px] w-full"
           onClick={() => document.getElementById("my_modal_5").showModal()}
         >
           <MdAddCircleOutline /> Add New Property
@@ -330,7 +330,9 @@ const MyProperties = () => {
           ))}
         </div>
       ) : (
-        <h3>You Have not Published Any property</h3>
+        <h3 className="border-4 border-red-600">
+          You Have not Published Any property
+        </h3>
       )}
     </div>
   );

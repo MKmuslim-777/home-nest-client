@@ -50,24 +50,24 @@ const Ratings = ({ property }) => {
 
     console.log(propertyData);
 
-    // fetch(`http://localhost:3000/properties/${data._id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(propertyData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((response) => {
-    //     if (response.acknowledged) {
-    //       console.log(response);
-    //       //   form.reset();
-    //       toast.success("Your Data successfully Updated!");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    fetch(`http://localhost:3000/properties/${property._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(propertyData),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        if (response.acknowledged) {
+          console.log(response);
+          form.reset();
+          toast.success("Your Data successfully Updated!");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

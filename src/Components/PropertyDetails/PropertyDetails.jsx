@@ -41,6 +41,7 @@ const PropertyDetails = () => {
     beds,
     baths,
     sqft,
+    _id,
   } = property;
 
   if (!propertyName) {
@@ -196,7 +197,7 @@ const PropertyDetails = () => {
           </div>
         </div>
         <div className="px-20"></div>
-        <Ratings property={property}></Ratings>
+        <Ratings property={property} id={_id}></Ratings>
       </div>
     </div>
   );

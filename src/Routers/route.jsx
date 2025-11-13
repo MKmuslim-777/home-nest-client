@@ -9,6 +9,7 @@ import MyProperties from "../Components/MyProperties/MyProperties";
 import PropertyDetails from "../Components/PropertyDetails/PropertyDetails";
 import PrivateRoute from "./PrivetRoute";
 import UpdateProperty from "../Components/UpdateProperty/UpdateProperty";
+import MyComments from "../Components/MyComments/MyComments";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdateProperty></UpdateProperty>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myComments",
+        element: (
+          <PrivateRoute>
+            <MyComments></MyComments>
           </PrivateRoute>
         ),
       },

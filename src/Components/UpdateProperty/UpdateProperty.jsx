@@ -3,11 +3,12 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { MdAddCircleOutline } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 
 const UpdateProperty = () => {
   const data = useLoaderData();
   //   console.log(data._id);
+  const navigate = useNavigate();
 
   const { user } = use(AuthContext);
   const handlePropertyUpdate = (e) => {
@@ -46,6 +47,7 @@ const UpdateProperty = () => {
         if (response.acknowledged) {
           console.log(response);
           //   form.reset();
+          navigate("/myProperties");
           toast.success("Your Data successfully Updated!");
         }
       })
