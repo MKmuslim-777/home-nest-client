@@ -56,19 +56,17 @@ const Footer = () => {
           <h6 className="footer-title">Social</h6>
           <div className="grid grid-flow-col gap-4">
             <NavLink
-              className={"text-3xl md:ml-2.5 text-secondary hover:text-black"}
+              className={"text-3xl md:ml-2.5 text-secondary hover:text-accent"}
             >
               <FaXTwitter />
             </NavLink>
             <NavLink
-              className={"text-3xl md:ml-2.5 text-secondary hover:text-black"}
+              className={"text-3xl md:ml-2.5 text-secondary hover:text-accent"}
             >
               <FaGithub />
             </NavLink>
             <NavLink
-              className={
-                "text-3xl md:ml-2.5 text-secondary hover:text-blue-500"
-              }
+              className={"text-3xl md:ml-2.5 text-secondary hover:text-accent"}
             >
               <FaFacebook />
             </NavLink>

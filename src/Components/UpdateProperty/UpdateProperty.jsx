@@ -37,14 +37,14 @@ const UpdateProperty = () => {
     fetch(`http://localhost:3000/properties/${data._id}`, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(propertyData),
     })
       .then((res) => res.json())
       .then((response) => {
-        console.log(response);
-        if (response.insertedId) {
+        if (response.acknowledged) {
+          console.log(response);
           //   form.reset();
           toast.success("Your Data successfully Updated!");
         }

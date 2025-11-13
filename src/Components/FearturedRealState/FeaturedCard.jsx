@@ -3,10 +3,10 @@ import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { Link } from "react-router";
 
-const PropertyCard = ({ card }) => {
+const FeaturedCard = ({ card }) => {
   const { location, price, propertyImage, propertyName, _id } = card;
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] mr-10 my-10">
       <figure className="relative h-56">
         <img
           src={propertyImage}
@@ -72,4 +72,4 @@ const PropertyCard = ({ card }) => {
   );
 };
 
-export default PropertyCard;
+export default FeaturedCard;

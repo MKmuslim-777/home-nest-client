@@ -6,9 +6,15 @@ import {
   HiOutlineUserCircle,
   HiTag,
   HiCurrencyDollar,
+  // নতুন ইমপোর্ট করা আইকন
+  HiHome,
+  HiScale,
+  HiOutlineCube,
 } from "react-icons/hi";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import Ratings from "../Ratings/Ratings";
+import Loading from "../Loading/Loading";
 
 const PropertyDetails = () => {
   const { user } = use(AuthContext);
@@ -19,11 +25,9 @@ const PropertyDetails = () => {
     axios
       .get(`https://home-nest-server-ivory.vercel.app/properties/${productId}`)
       .then((data) => {
-        // console.log("after axios get", data);
         setProperty(data.data);
       });
   }, [productId]);
-  console.log(property);
 
   const {
     propertyName,
@@ -34,10 +38,17 @@ const PropertyDetails = () => {
     propertyImage,
     postedDate,
     postedBy,
+    beds,
+    baths,
+    sqft,
   } = property;
 
+  if (!propertyName) {
+    return <Loading></Loading>;
+  }
+
   return (
-    <div className="bg-gray-50 min-h-screen p-4 md:p-8 lg:p-12 ">
+    <div className="bg-base-100 min-h-screen p-4 md:p-8 lg:p-12 ">
       <div className="container">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -49,7 +60,7 @@ const PropertyDetails = () => {
               />
             </figure>
 
-            <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+            <div className="bg-base-100/50 p-6 rounded-xl shadow-lg border border-gray-100">
               <h1 className="text-4xl font-extrabold text-gray-800 mb-2">
                 {propertyName}
               </h1>
@@ -59,17 +70,32 @@ const PropertyDetails = () => {
                   <HiCurrencyDollar className="w-6 h-6 mr-1" />
                   {price}
                 </span>
+
                 <span className="flex items-center text-base">
                   <HiOutlineLocationMarker className="w-5 h-5 mr-1 text-secondary" />
                   {location}
                 </span>
-                <div
-                  className="badge badge-outline badge-secondary
-               font-medium"
-                >
+
+                <div className="badge badge-outline badge-secondary font-medium">
                   {category}
                 </div>
               </div>
+
+              <div className="flex flex-wrap items-center space-x-6 my-4 text-gray-700 font-medium">
+                <span className="flex items-center">
+                  <HiHome className="w-5 h-5 mr-1 text-teal-500" />
+                  {beds || "N/A"} Beds
+                </span>
+                <span className="flex items-center">
+                  <HiHome className="w-5 h-5 mr-1 text-teal-500" />
+                  {baths || "N/A"} Baths
+                </span>
+                <span className="flex items-center">
+                  <HiScale className="w-5 h-5 mr-1 text-teal-500" />
+                  {sqft || "N/A"} sqft
+                </span>
+              </div>
+              {/* ----- */}
 
               <div className="divider"></div>
 
@@ -83,7 +109,6 @@ const PropertyDetails = () => {
           </div>
 
           <div className="lg:col-span-1 space-y-8">
-            {/* Poster Information Card */}
             <div className="card bg-base-100 shadow-xl border border-gray-100 p-6">
               <h3 className="text-xl font-bold text-secondary mb-4 flex items-center">
                 <HiOutlineUserCircle className="w-6 h-6 mr-2" />{" "}
@@ -92,7 +117,10 @@ const PropertyDetails = () => {
               <div className="flex items-center space-x-4">
                 <div className="avatar">
                   <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src={`${postedBy?.profilePhotoUrl}`} />
+                    <img
+                      src={postedBy?.profilePhotoUrl || "placeholder-url"}
+                      alt={postedBy?.name}
+                    />
                   </div>
                 </div>
                 <div>
@@ -103,14 +131,12 @@ const PropertyDetails = () => {
 
               <div className="divider my-4"></div>
 
-              {/* Posting Date */}
               <div className="flex items-center text-sm text-gray-600">
                 <HiOutlineCalendar className="w-5 h-5 mr-2 text-secondary" />
                 Posted on:{" "}
                 <span className="font-semibold ml-1">{postedDate}</span>
               </div>
 
-              {/* Contact Button */}
               <Link
                 to={"https://github.com/MKmuslim-777"}
                 className="btn btn-secondary w-full mt-6 text-white text-lg"
@@ -119,12 +145,38 @@ const PropertyDetails = () => {
               </Link>
             </div>
 
-            {/* Quick Facts Card (If you had more data like size, beds, baths) */}
             <div className="card bg-base-100 shadow-xl border border-gray-100 p-6">
               <h3 className="text-xl font-bold text-gray-700 mb-4 flex items-center">
                 <HiTag className="w-6 h-6 mr-2" /> Quick Facts
               </h3>
               <div className="space-y-3 text-gray-600">
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="font-medium flex items-center">
+                    <HiHome className="w-5 h-5 mr-2" /> Beds
+                  </span>
+                  <span className="font-semibold text-right">
+                    {beds || "N/A"}
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="font-medium flex items-center">
+                    <HiHome className="w-5 h-5 mr-2" /> Baths
+                  </span>
+                  <span className="font-semibold text-right">
+                    {baths || "N/A"}
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="font-medium flex items-center">
+                    <HiScale className="w-5 h-5 mr-2" /> Sqft
+                  </span>
+                  <span className="font-semibold text-right">
+                    {sqft || "N/A"}
+                  </span>
+                </div>
+
                 <div className="flex justify-between items-center border-b pb-2">
                   <span className="font-medium">Type</span>
                   <span className="font-semibold text-right">{category}</span>
@@ -144,6 +196,7 @@ const PropertyDetails = () => {
           </div>
         </div>
         <div className="px-20"></div>
+        <Ratings property={property}></Ratings>
       </div>
     </div>
   );
