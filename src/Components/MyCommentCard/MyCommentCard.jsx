@@ -60,6 +60,14 @@ const MyCommentCard = ({ card, sl }) => {
         </div>
       </td>
 
+      <td className="px-4 py-4 w-3/12">
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-800">
+            {commentBy.comment}
+          </span>
+        </div>
+      </td>
+
       {/* 5. Ratings (Responsive: fixed size) */}
       <td className="px-4 py-4 w-1/12 ">
         {/* <StarDisplay rating={"commentBy.ratings"} /> */}

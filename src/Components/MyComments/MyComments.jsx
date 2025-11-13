@@ -40,34 +40,6 @@ const MyComments = () => {
     return <Loading></Loading>;
   }
 
-  // const { user } = use(AuthContext);
-  // const demoComments = [
-  //   {
-  //     id: 1,
-  //     propertyName: "Luxury Apartment in Banani",
-  //     commentText:
-  //       "Excellent service and a smooth buying process! The location is perfect.",
-  //     rating: 5,
-  //     date: "2025-10-25",
-  //   },
-  //   {
-  //     id: 2,
-  //     propertyName: "Commercial Plot near Airport Road",
-  //     commentText:
-  //       "Good investment advice, although the paperwork took a bit longer than expected.",
-  //     rating: 4,
-  //     date: "2025-09-15",
-  //   },
-  //   {
-  //     id: 3,
-  //     propertyName: "Vacation Villa in Cox's Bazar",
-  //     commentText:
-  //       "The villa was beautiful, but the agent was slow to respond initially.",
-  //     rating: 3.5,
-  //     date: "2025-08-01",
-  //   },
-  // ];
-
   return (
     <section className="p-6 min-h-[65vh] mt-20 container">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center border-b pb-3">
@@ -90,6 +62,9 @@ const MyComments = () => {
               </th>
               <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                 Comment By
+              </th>
+              <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
+                Comment
               </th>
               <th className="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
                 Ratings

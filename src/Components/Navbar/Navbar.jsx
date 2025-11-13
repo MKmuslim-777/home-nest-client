@@ -168,12 +168,12 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <div className="flex gap-2.5">
-                      <button className="btn btn-secondary text-base-100 mt-2">
+                      {/* <button className="btn btn-secondary text-base-100 mt-2">
                         Edit
-                      </button>
+                      </button> */}
                       <button
                         onClick={handleSignOut}
-                        className="btn btn-outline hover:bg-secondary hover:text-base-100 mt-2"
+                        className="btn btn-outline w-full hover:bg-secondary hover:text-base-100 mt-2"
                       >
                         Sign Out
                       </button>
