@@ -169,12 +169,12 @@ const Register = () => {
 
               <span
                 onClick={() => setEye(!eye)}
-                className="absolute top-1 left-110 z-10"
+                className="absolute top-1 left-110 z-10 "
               >
                 {eye ? (
-                  <FaEyeSlash className="text-sm" />
+                  <FaEyeSlash className="text-sm cursor-pointer" />
                 ) : (
-                  <FaEye className="text-sm" />
+                  <FaEye className="text-sm cursor-pointer" />
                 )}
               </span>
             </label>

@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivetRoute";
 import UpdateProperty from "../Components/UpdateProperty/UpdateProperty";
 import MyComments from "../Components/MyComments/MyComments";
 import NotFound from "../Components/NotFound/NotFound";
+import DashboardLayout from "../Components/Layouts/Dashboard/DashboardLayout/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +44,7 @@ const router = createBrowserRouter([
           fetch(
             `https://home-nest-server-ivory.vercel.app/properties/${params.id}`
           ),
-        element: (
-          <PrivateRoute>
-            <PropertyDetails></PropertyDetails>
-          </PrivateRoute>
-        ),
+        element: <PropertyDetails></PropertyDetails>,
       },
       {
         path: "/updateProperty/:id",
@@ -82,6 +79,24 @@ const router = createBrowserRouter([
       {
         path: "/auth/register",
         Component: Register,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        Component: (
+          <PrivateRoute>
+            <DashboardLayout></DashboardLayout>
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -5,7 +5,7 @@ import Footer from "../../Footer/Footer";
 const HomeLayout = () => {
   return (
     <div>
-      <nav>
+      <nav className="">
         <Navbar></Navbar>
       </nav>
       <header></header>

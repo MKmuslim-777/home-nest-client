@@ -4,6 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { useForm } from "react-hook-form";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { user, signInWithGoogle, setUser, signIn, forgetPassword } =
@@ -11,8 +13,11 @@ const Login = () => {
   const emailRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const googleProvider = new GoogleAuthProvider();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const handleForget = (event) => {
     const email = emailRef.current.value;
@@ -43,18 +48,6 @@ const Login = () => {
       })
       .catch((error) => {
         toast.error(error.massage);
-      });
-  };
-
-  const handleGoogleLogin = () => {
-    signInWithGoogle(googleProvider)
-      .then((result) => {
-        toast.success("Signing Successful with google!");
-        navigate(`${location.state ? location.state : "/"}`);
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(error);
       });
   };
 
@@ -122,14 +115,7 @@ const Login = () => {
           <div className="divider text-sm text-gray-500">OR</div>
 
           <div className="form-control">
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              className="btn bg-white border w-full border-gray-300 text-secondary hover:bg-gray-50 flex items-center justify-center space-x-2 transition duration-150"
-            >
-              <FcGoogle className="text-xl" />
-              <span>Continue with Google</span>
-            </button>
+            <SocialLogin></SocialLogin>
             <label className="label justify-center pt-4">
               <p className="label-text-alt text-gray-600">
                 Have not any account?

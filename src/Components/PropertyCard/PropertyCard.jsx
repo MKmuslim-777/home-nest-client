@@ -4,68 +4,76 @@ import { HiLocationMarker } from "react-icons/hi";
 import { Link } from "react-router";
 
 const PropertyCard = ({ card }) => {
-  const { location, price, propertyImage, propertyName, _id } = card;
+  const {
+    location,
+    price,
+    propertyImage,
+    propertyName,
+    _id,
+    beds,
+    baths,
+    sqft,
+  } = card;
+
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition duration-300 transform hover:scale-[1.02]">
-      <figure className="relative h-56">
+    <div className="group card bg-base-100 border border-base-200 shadow-sm hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full">
+      {/* ইমেজ সেকশন */}
+      <figure className="relative h-48 overflow-hidden">
         <img
           src={propertyImage}
           alt={propertyName}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        {/* Status Badge - DaisyUI badge component */}
-        {/* <div
-          className={`badge badge-lg absolute top-3 left-3 font-semibold ${
-            property.status === "For Sale" ? "badge-primary" : "badge-secondary"
-          }`}
-        >
-          {property.status}
-        </div> */}
+        <div className="absolute top-3 right-3">
+          <div className="badge badge-secondary text-white font-bold text-xs p-3 shadow-lg">
+            FOR SALE
+          </div>
+        </div>
       </figure>
 
-      <div className="card-body p-5">
-        <div className="flex justify-between items-start mb-2">
-          <h2 className="text-2xl font-bold text-secondary">${price}</h2>
-        </div>
-        <h3 className="card-title text-lg mb-1 line-clamp-2">{propertyName}</h3>
-
-        <p className="flex items-center text-sm text-gray-600 mb-3">
-          <HiLocationMarker className="w-4 h-4 mr-1 text-secondary" />
-          <span className="truncate">{location}</span>
-        </p>
-
-        <div className="divider my-0"></div>
-
-        <div className="flex justify-around pt-3 text-sm font-medium text-gray-700">
-          <div className="flex items-center space-x-1">
-            <FaBed className="text-lg text-accent" />
-            <span>{card.beds} Beds</span>
+      <div className="card-body p-4 flex flex-col justify-between flex-grow">
+        <div>
+          <div className="flex items-baseline gap-2 mb-1">
+            <span className="text-xl font-black text-secondary">${price}</span>
+            <span className="text-sm text-base-content/50 line-through">
+              ${parseInt(price) + 500}
+            </span>
           </div>
 
-          <div className="flex items-center space-x-1">
-            <FaBath className="text-lg text-accent" />
-            <span>{card.baths} Baths</span>
-          </div>
+          <h3 className="font-bold text-base-content text-md line-clamp-1 mb-1 group-hover:text-secondary transition-colors">
+            {propertyName}
+          </h3>
 
-          <div className="flex items-center space-x-1">
-            <FaRulerCombined className="text-lg text-accent" />
-            <span>{card.sqft} SqFt</span>
-          </div>
+          <p className="flex items-center text-xs text-base-content/60 mb-3">
+            <HiLocationMarker className="text-secondary mr-1 shrink-0" />
+            <span className="truncate">{location}</span>
+          </p>
         </div>
 
-        <div className="card-actions w-full justify-between mt-4">
-          {/* <button className="btn btn-sm bg-[#00d3bb] text-base-100 border-none">
-            Edit
-          </button> */}
+        <div>
+          <div className="divider my-0 opacity-50"></div>
+
+          <div className="flex justify-between py-3 text-[12px] font-medium text-base-content/70">
+            <div className="flex items-center gap-1">
+              <FaBed className="text-secondary" />
+              <span>{beds || 0}</span>
+            </div>
+            <div className="flex items-center gap-1 border-x border-base-300 px-3">
+              <FaBath className="text-secondary" />
+              <span>{baths || 0}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <FaRulerCombined className="text-secondary" />
+              <span>{sqft || 0} ft²</span>
+            </div>
+          </div>
+
           <Link
             to={`/propertyDetails/${_id}`}
-            className="btn w-full btn-secondary text-base-100"
+            className="btn btn-sm btn-secondary btn-outline w-full rounded-lg hover:text-white transition-all font-bold mt-1"
           >
             View Details
           </Link>
-          {/* <button className="btn btn-sm bg-red-600 border-none text-base-100">
-            Delete
-          </button> */}
         </div>
       </div>
     </div>

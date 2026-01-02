@@ -6,12 +6,11 @@ import {
   HiOutlineUserCircle,
   HiTag,
   HiCurrencyDollar,
-  // নতুন ইমপোর্ট করা আইকন
   HiHome,
-  HiScale,
   HiOutlineCube,
 } from "react-icons/hi";
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { FaBed, FaBath } from "react-icons/fa"; // আরও মানানসই আইকন
+import { useLoaderData, Link } from "react-router";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Ratings from "../Ratings/Ratings";
 import Loading from "../Loading/Loading";
@@ -19,7 +18,7 @@ import Loading from "../Loading/Loading";
 const PropertyDetails = () => {
   const { user } = use(AuthContext);
   const { _id: productId } = useLoaderData();
-  const [property, setProperty] = useState([]);
+  const [property, setProperty] = useState({});
 
   useEffect(() => {
     axios
@@ -44,160 +43,158 @@ const PropertyDetails = () => {
     _id,
   } = property;
 
-  if (!propertyName) {
-    return <Loading></Loading>;
-  }
+  if (!propertyName) return <Loading />;
 
   return (
-    <div className="bg-base-100 min-h-screen p-4 md:p-8 lg:p-12 ">
-      <div className="container">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <figure className="rounded-xl shadow-2xl overflow-hidden mb-6">
-              <img
-                src={propertyImage}
-                alt={propertyName}
-                className="w-full h-[50vh] md:h-[60vh] object-cover transition duration-500 hover:scale-[1.03]"
-              />
-            </figure>
+    <div className="bg-base-200/30 min-h-screen mt-5 py-10 px-4 md:px-8">
+      <div className="container mx-auto">
+        {/* Breadcrumb or Small Label */}
+        <div className="mb-6">
+          <span className="text-secondary font-bold uppercase tracking-widest text-xs">
+            Property Details
+          </span>
+          <h1 className="text-3xl md:text-5xl font-black text-base-content mt-2">
+            {propertyName}
+          </h1>
+        </div>
 
-            <div className="bg-base-100/50 p-6 rounded-xl shadow-lg border border-gray-100">
-              <h1 className="text-4xl font-extrabold text-gray-800 mb-2">
-                {propertyName}
-              </h1>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          {/* Left Side: Image and Description */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Image Section */}
+            <div className="relative group">
+              <figure className="rounded-3xl shadow-2xl overflow-hidden h-[50vh] md:h-[70vh]">
+                <img
+                  src={propertyImage}
+                  alt={propertyName}
+                  className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                />
+              </figure>
+              {/* Floating Price Tag */}
+              <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-white/20">
+                <p className="text-xs font-bold text-gray-500 uppercase">
+                  Total Price
+                </p>
+                <p className="text-3xl font-black text-secondary">${price}</p>
+              </div>
+            </div>
 
-              <div className="flex flex-wrap items-center space-x-4 text-gray-600 mb-6">
-                <span className="flex items-center text-lg font-semibold text-secondary">
-                  <HiCurrencyDollar className="w-6 h-6 mr-1" />
-                  {price}
-                </span>
-
-                <span className="flex items-center text-base">
-                  <HiOutlineLocationMarker className="w-5 h-5 mr-1 text-secondary" />
-                  {location}
-                </span>
-
-                <div className="badge badge-outline badge-secondary font-medium">
-                  {category}
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "Beds", value: beds, icon: <FaBed /> },
+                { label: "Baths", value: baths, icon: <FaBath /> },
+                { label: "Sqft", value: sqft, icon: <HiOutlineCube /> },
+                { label: "Category", value: category, icon: <HiTag /> },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="bg-base-100 p-4 rounded-2xl border border-base-200 shadow-sm flex items-center gap-4"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary text-xl">
+                    {stat.icon}
+                  </div>
+                  <div>
+                    <p className="text-xs text-base-content/50 uppercase font-bold">
+                      {stat.label}
+                    </p>
+                    <p className="font-bold text-base-content">
+                      {stat.value || "N/A"}
+                    </p>
+                  </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Content Card */}
+            <div className="bg-base-100 p-8 rounded-3xl border border-base-200 shadow-sm">
+              <div className="flex items-center gap-2 text-secondary mb-4">
+                <HiOutlineLocationMarker className="text-xl" />
+                <span className="font-semibold text-lg">{location}</span>
               </div>
-
-              <div className="flex flex-wrap items-center space-x-6 my-4 text-gray-700 font-medium">
-                <span className="flex items-center">
-                  <HiHome className="w-5 h-5 mr-1 text-teal-500" />
-                  {beds || "N/A"} Beds
-                </span>
-                <span className="flex items-center">
-                  <HiHome className="w-5 h-5 mr-1 text-teal-500" />
-                  {baths || "N/A"} Baths
-                </span>
-                <span className="flex items-center">
-                  <HiScale className="w-5 h-5 mr-1 text-teal-500" />
-                  {sqft || "N/A"} sqft
-                </span>
-              </div>
-              {/* ----- */}
-
-              <div className="divider"></div>
-
-              <h2 className="text-2xl font-bold text-gray-700 mt-4 mb-3">
-                Description
+              <h2 className="text-2xl font-black text-base-content mb-4 underline decoration-secondary/30 decoration-4 underline-offset-8">
+                About this Property
               </h2>
-              <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+              <p className="text-base-content/70 leading-relaxed text-lg whitespace-pre-line">
                 {description}
               </p>
             </div>
           </div>
 
-          <div className="lg:col-span-1 space-y-8">
-            <div className="card bg-base-100 shadow-xl border border-gray-100 p-6">
-              <h3 className="text-xl font-bold text-secondary mb-4 flex items-center">
-                <HiOutlineUserCircle className="w-6 h-6 mr-2" />{" "}
-                {postedBy?.name}
+          {/* Right Side: Agent Info & Quick Facts */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Agent Card */}
+            <div className="bg-base-100 p-8 rounded-3xl border border-base-200 shadow-xl sticky top-24">
+              <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+                <HiOutlineUserCircle className="text-secondary text-2xl" />{" "}
+                Listed by Agent
               </h3>
-              <div className="flex items-center space-x-4">
+
+              <div className="flex items-center gap-4 mb-8">
                 <div className="avatar">
-                  <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <div className="w-20 rounded-2xl ring ring-secondary ring-offset-base-100 ring-offset-4">
                     <img
-                      src={postedBy?.profilePhotoUrl || "placeholder-url"}
-                      alt={postedBy?.name}
+                      src={
+                        postedBy?.profilePhotoUrl ||
+                        "https://img.icons8.com/puffy-filled/64/user.png"
+                      }
                     />
                   </div>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">{postedBy?.email}</p>
-                  <p className="text-sm text-gray-600">Real Estate Agent</p>
+                  <h4 className="text-xl font-black text-base-content">
+                    {postedBy?.name}
+                  </h4>
+                  <p className="text-sm text-secondary font-semibold">
+                    Verified Agent
+                  </p>
                 </div>
               </div>
 
-              <div className="divider my-4"></div>
-
-              <div className="flex items-center text-sm text-gray-600">
-                <HiOutlineCalendar className="w-5 h-5 mr-2 text-secondary" />
-                Posted on:{" "}
-                <span className="font-semibold ml-1">{postedDate}</span>
+              <div className="space-y-4 bg-base-200/50 p-4 rounded-2xl mb-8">
+                <div className="flex items-center gap-3 text-sm">
+                  <HiOutlineCalendar className="text-secondary text-lg" />
+                  <span className="text-base-content/60">
+                    Posted on: <b className="text-base-content">{postedDate}</b>
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-sm truncate">
+                  <HiCurrencyDollar className="text-secondary text-lg" />
+                  <span className="text-base-content/60 truncate">
+                    {postedBy?.email}
+                  </span>
+                </div>
               </div>
 
-              <Link
-                to={"https://github.com/MKmuslim-777"}
-                className="btn btn-secondary w-full mt-6 text-white text-lg"
+              <a
+                href={`mailto:${postedBy?.email}`}
+                className="btn btn-secondary w-full rounded-2xl text-white font-bold h-14 shadow-lg shadow-secondary/20 hover:shadow-secondary/40 transition-all border-none"
               >
-                Contact Agent
-              </Link>
+                Send Inquiry
+              </a>
             </div>
 
-            <div className="card bg-base-100 shadow-xl border border-gray-100 p-6">
-              <h3 className="text-xl font-bold text-gray-700 mb-4 flex items-center">
-                <HiTag className="w-6 h-6 mr-2" /> Quick Facts
-              </h3>
-              <div className="space-y-3 text-gray-600">
-                <div className="flex justify-between items-center border-b pb-2">
-                  <span className="font-medium flex items-center">
-                    <HiHome className="w-5 h-5 mr-2" /> Beds
-                  </span>
-                  <span className="font-semibold text-right">
-                    {beds || "N/A"}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center border-b pb-2">
-                  <span className="font-medium flex items-center">
-                    <HiHome className="w-5 h-5 mr-2" /> Baths
-                  </span>
-                  <span className="font-semibold text-right">
-                    {baths || "N/A"}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center border-b pb-2">
-                  <span className="font-medium flex items-center">
-                    <HiScale className="w-5 h-5 mr-2" /> Sqft
-                  </span>
-                  <span className="font-semibold text-right">
-                    {sqft || "N/A"}
-                  </span>
-                </div>
-
-                <div className="flex justify-between items-center border-b pb-2">
-                  <span className="font-medium">Type</span>
-                  <span className="font-semibold text-right">{category}</span>
-                </div>
-                <div className="flex justify-between items-center border-b pb-2">
-                  <span className="font-medium">Price</span>
-                  <span className="font-semibold text-right text-lg text-secondary">
-                    {price}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-medium">Area</span>
-                  <span className="font-semibold text-right">{location}</span>
-                </div>
+            {/* Extra Promo/Trust Card */}
+            {/* <div className="bg-secondary text-white p-8 rounded-3xl shadow-xl relative overflow-hidden group">
+              <div className="relative z-10">
+                <h4 className="text-xl font-bold mb-2">Want a Tour?</h4>
+                <p className="text-white/70 text-sm mb-4">
+                  Book a physical visit to this property with our expert.
+                </p>
+                <button className="btn btn-sm btn-white rounded-lg">
+                  Schedule Now
+                </button>
               </div>
-            </div>
+              <HiHome className="absolute -bottom-4 -right-4 text-9xl text-white/10 group-hover:scale-110 transition-transform" />
+            </div> */}
           </div>
         </div>
-        <div className="px-20"></div>
-        <Ratings property={property} id={_id}></Ratings>
+
+        {/* Ratings Section */}
+        <div className="mt-16">
+          <div className="divider mb-10">Reviews & Ratings</div>
+          <Ratings property={property} id={_id} />
+        </div>
       </div>
     </div>
   );

@@ -102,7 +102,7 @@ const MyProperties = () => {
   }
   // console.log(property);
   return (
-    <div className="container mx-auto min-h-[65vh]">
+    <div className="container mx-auto min-h-[65vh] mt-20">
       <title>HomeNest | My Properties</title>
       <div className="text-center flex justify-center items-center">
         <h2 className="md:text-5xl text-3xl font-bold text-secondary text-center my-10">
@@ -122,204 +122,255 @@ const MyProperties = () => {
           <MdAddCircleOutline /> Add New Property
         </button>
         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
+          <div className="modal-box max-w-2xl">
+            {" "}
+            {/* modal width বাড়ানো হয়েছে */}
             <form onSubmit={handlePropertySubmit} method="dialog">
-              <div className="flex justify-between items-center">
-                <div></div>
-                <h3 className="font-bold text-lg text-center my-5">
+              <div className="flex justify-between items-center border-b pb-4 mb-4">
+                <h3 className="font-bold text-2xl text-secondary">
                   Add New Property
                 </h3>
-                <div>
-                  <IoClose onClick={modalClose} />
-                </div>
+                <button
+                  type="button"
+                  onClick={modalClose}
+                  className="btn btn-sm btn-circle btn-ghost"
+                >
+                  <IoClose size={24} />
+                </button>
               </div>
 
-              <div className="form-control">
-                <div className="flex gap-2.5">
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Name</span>
+              <div className="form-control space-y-4">
+                {/* Agent Info (Read Only) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Agent Name
                     </label>
-                    <label className="input-group ">
-                      <input
-                        type="text"
-                        name="name"
-                        defaultValue={user?.displayName}
-                        readOnly
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      defaultValue={user?.displayName}
+                      readOnly
+                      className="input input-bordered bg-base-200 cursor-not-allowed"
+                    />
                   </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Email</span>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Agent Email
                     </label>
-                    <label className="input-group ">
-                      <input
-                        type="email"
-                        name="email"
-                        defaultValue={user?.email}
-                        readOnly
-                        className="input input-bordered w-[260px] "
-                        required
-                      />
-                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      defaultValue={user?.email}
+                      readOnly
+                      className="input input-bordered bg-base-200 cursor-not-allowed"
+                    />
                   </div>
                 </div>
 
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">
-                    Property Name
-                  </span>
-                </label>
-                <label className="input-group">
+                {/* Property Basic Info */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Property Name
+                    </label>
+                    <input
+                      type="text"
+                      name="propertyName"
+                      placeholder="e.g. Dream Haven Villa"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Category
+                    </label>
+                    <select
+                      name="category"
+                      className="select select-bordered w-full"
+                      defaultValue="Residential-Apartment"
+                    >
+                      <option>Residential-Apartment</option>
+                      <option>Residential-House</option>
+                      <option>Commercial-Office</option>
+                      <option>Commercial-Retail</option>
+                      <option>Land-Residential</option>
+                      <option>Industrial-Warehouse</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Status & Price */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Property Status
+                    </label>
+                    <select
+                      name="status"
+                      className="select select-bordered w-full"
+                      defaultValue="For Sale"
+                    >
+                      <option>For Sale</option>
+                      <option>For Rent</option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Property Price ($)
+                    </label>
+                    <input
+                      type="number"
+                      name="price"
+                      placeholder="Amount in USD"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Beds, Baths, SqFt, Floor */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Beds
+                    </label>
+                    <input
+                      type="number"
+                      name="beds"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Baths
+                    </label>
+                    <input
+                      type="number"
+                      name="baths"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      SqFt
+                    </label>
+                    <input
+                      type="number"
+                      name="sqft"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Floor No
+                    </label>
+                    <input
+                      type="number"
+                      name="floorNo"
+                      placeholder="G+2"
+                      className="input input-bordered"
+                    />
+                  </div>
+                </div>
+
+                {/* Location & Image URL */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      City/Location
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      placeholder="City, State"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="label-text text-secondary font-semibold mb-1">
+                      Primary Image URL
+                    </label>
+                    <input
+                      type="url"
+                      name="propertyImageUrl"
+                      placeholder="https://image-link.com"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Video / Virtual Tour Link (New) */}
+                <div className="flex flex-col">
+                  <label className="label-text text-secondary font-semibold mb-1">
+                    Video/Virtual Tour URL (Optional)
+                  </label>
                   <input
-                    type="text"
-                    name="propertyName"
-                    placeholder="Property Name"
-                    className="input input-bordered w-full"
-                    required
+                    type="url"
+                    name="videoUrl"
+                    placeholder="YouTube or 360 View Link"
+                    className="input input-bordered"
                   />
-                </label>
+                </div>
 
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">Category</span>
-                </label>
-                <label className="input-group">
-                  <select
-                    defaultValue="Category"
-                    name="category"
-                    className="select w-full"
-                  >
-                    <option disabled={true}>Category</option>
-                    <option>Residential-Apartment</option>
-                    <option>AmberResidential-House</option>
-                    <option>Commercial-Office</option>
-                    <option>Commercial-Retail</option>
-                    <option>Land-Residential</option>
-                    <option>Land-Commercial</option>
-                    <option>Industrial-Warehouse</option>
-                    <option>Special-Holiday</option>
-                  </select>
-                </label>
-
-                {/* Beds, Baths, SqFt */}
-                <div className="flex gap-2.5">
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Beds</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="number"
-                        name="beds"
-                        placeholder="Beds"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">Baths</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="number"
-                        name="baths"
-                        placeholder="Baths"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">SqFt</span>
-                    </label>
-                    <label className="input-group ">
-                      <input
-                        type="number"
-                        name="sqft"
-                        placeholder="SqFt"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
+                {/* Amenities (Checkboxes - New) */}
+                <div className="flex flex-col">
+                  <label className="label-text text-secondary font-semibold mb-2">
+                    Amenities
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                    {[
+                      "Wifi",
+                      "Swimming Pool",
+                      "Gym",
+                      "Parking",
+                      "Security",
+                      "Garden",
+                    ].map((item) => (
+                      <label
+                        key={item}
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          name="amenities"
+                          value={item}
+                          className="checkbox checkbox-secondary checkbox-sm"
+                        />
+                        <span>{item}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
 
-                <div className="flex gap-2.5">
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">
-                        Property Price
-                      </span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="number"
-                        name="price"
-                        placeholder="Property Price"
-                        className="input input-bordered w-full"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="label mt-2.5">
-                      <span className="label-text text-secondary">
-                        Location
-                      </span>
-                    </label>
-                    <label className="input-group">
-                      <input
-                        type="text"
-                        name="location"
-                        placeholder="State Location"
-                        className="input input-bordered w-[250px]"
-                        required
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">
-                    Property Image URL
-                  </span>
-                </label>
-                <label className="input-group">
-                  <input
-                    type="text"
-                    name="propertyImageUrl"
-                    placeholder="https://example.com/profile.jpg"
-                    className="input input-bordered w-full"
-                    required
-                  />
-                </label>
-
-                <label className="label mt-2.5">
-                  <span className="label-text text-secondary">Description</span>
-                </label>
-                <label className="input-group">
+                {/* Description */}
+                <div className="flex flex-col">
+                  <label className="label-text text-secondary font-semibold mb-1">
+                    Description
+                  </label>
                   <textarea
-                    type="text"
                     name="description"
-                    placeholder="About Property"
-                    className="textarea w-full"
+                    placeholder="Describe the unique features of the property..."
+                    className="textarea textarea-bordered h-24 w-full"
                     required
                   />
-                </label>
+                </div>
               </div>
-              <button className="btn btn-secondary w-full mt-2.5 text-base-100">
-                Add Property
-              </button>
+
+              <div className="mt-6">
+                <button
+                  type="submit"
+                  className="btn btn-secondary w-full text-white font-bold text-lg"
+                >
+                  Publish Property
+                </button>
+              </div>
             </form>
           </div>
         </dialog>

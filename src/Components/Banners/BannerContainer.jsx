@@ -3,7 +3,7 @@ import { FaLocationDot } from "react-icons/fa6";
 const BannerContainer = () => {
   return (
     <div>
-      <div className="carousel w-full">
+      <div className="carousel w-full mt-20">
         <div
           id="slide1"
           className="relative carousel-item md:min-h-[70vh] min-h-[70vh] w-full flex items-center justify-end bg-cover bg-center"
