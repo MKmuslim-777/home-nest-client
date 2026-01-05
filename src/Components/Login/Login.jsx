@@ -3,13 +3,13 @@ import { use, useRef } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { AuthContext } from "../AuthProvider/AuthProvider";
+
 import { useForm } from "react-hook-form";
 import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
-  const { user, signInWithGoogle, setUser, signIn, forgetPassword } =
-    use(AuthContext);
+  const { user, signInWithGoogle, setUser, signIn, forgetPassword } = useAuth();
   const emailRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();

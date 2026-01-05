@@ -2,9 +2,9 @@ import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 const useRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$/;
 
@@ -13,8 +13,7 @@ const Register = () => {
   const [checkPassword, setCheckPassword] = useState(false);
   const [eye, setEye] = useState(false);
 
-  const { user, signInWithGoogle, setUser, createWithEmailPass } =
-    use(AuthContext);
+  const { user, signInWithGoogle, setUser, createWithEmailPass } = useAuth();
 
   const googleProvider = new GoogleAuthProvider();
 

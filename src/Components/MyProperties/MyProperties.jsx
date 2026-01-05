@@ -3,16 +3,16 @@ import MyPropertyCard from "../MyPropertyCard/MyPropertyCard";
 import { Commet } from "react-loading-indicators";
 import { data, useLoaderData } from "react-router";
 import { MdAddCircleOutline } from "react-icons/md";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import useAuth from "../../Hooks/useAuth";
 
 const MyProperties = () => {
   const [loading, setLoading] = useState(false);
   const property = useLoaderData();
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const [propertyData, setPropertyData] = useState([]);
 
   useEffect(() => {

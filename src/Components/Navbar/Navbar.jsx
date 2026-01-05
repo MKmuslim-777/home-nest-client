@@ -1,14 +1,15 @@
 import React, { use } from "react";
 import { TiThMenu } from "react-icons/ti";
 import { Link, NavLink } from "react-router";
-import { AuthContext } from "../AuthProvider/AuthProvider";
+
 import { toast } from "react-toastify";
 import { GoComment, GoSignOut } from "react-icons/go";
 import ThemeToggle from "../ToggleBtn/ThemeToggle";
 import Logo from "../../Shared/Logo/Logo";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
-  const { user, handlesignOut } = use(AuthContext);
+  const { user, handlesignOut } = useAuth();
 
   const handleSignOut = () => {
     handlesignOut()

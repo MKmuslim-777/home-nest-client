@@ -1,16 +1,16 @@
 import React, { use } from "react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { MdAddCircleOutline } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { useLoaderData, useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const UpdateProperty = () => {
   const data = useLoaderData();
   //   console.log(data._id);
   const navigate = useNavigate();
 
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const handlePropertyUpdate = (e) => {
     e.preventDefault();
     const form = e.target;

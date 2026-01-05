@@ -1,15 +1,15 @@
 import React, { use, useEffect, useState } from "react";
 import { HiOutlineChatAlt2, HiStar } from "react-icons/hi";
 import MyCommentCard from "../MyCommentCard/MyCommentCard";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading";
+import useAuth from "../../Hooks/useAuth";
 
 const MyComments = () => {
   const [loading, setLoading] = useState(false);
   // const property = useLoaderData();
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const [propertyData, setPropertyData] = useState([]);
 
   useEffect(() => {

@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router";
 import HomeLayout from "../Components/Layouts/HomeLayout/HomeLayout";
 import Home from "../Components/Home/Home";
 import AllProperties from "../Components/AllProperties/AllProperties";
-import AuthLayout from "../Components/Layouts/AuthLayout/AuthLayout";
 import Login from "../Components/Login/Login";
 import Register from "../Components/Register/Register";
 import MyProperties from "../Components/MyProperties/MyProperties";
@@ -12,6 +11,8 @@ import UpdateProperty from "../Components/UpdateProperty/UpdateProperty";
 import MyComments from "../Components/MyComments/MyComments";
 import NotFound from "../Components/NotFound/NotFound";
 import DashboardLayout from "../Components/Layouts/Dashboard/DashboardLayout/DashboardLayout";
+import AuthLayout from "../Components/Layouts/AuthLayout/AuthLayout";
+import DashboardHome from "../Components/Layouts/Dashboard/Pages/Home/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -92,9 +93,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: (
+        element: (
           <PrivateRoute>
-            <DashboardLayout></DashboardLayout>
+            <DashboardHome></DashboardHome>
           </PrivateRoute>
         ),
       },

@@ -3,10 +3,10 @@ import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import { IoClose } from "react-icons/io5";
 import Loading from "../Loading/Loading";
 import UpdateProperty from "../UpdateProperty/UpdateProperty";
+import useAuth from "../../Hooks/useAuth";
 
 // const propertyData = {
 //   imageUrl:
@@ -21,7 +21,7 @@ import UpdateProperty from "../UpdateProperty/UpdateProperty";
 // };
 
 const MyPropertyCard = ({ card }) => {
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const [fetchData, setFetchData] = useState();
   const [loading, setLoading] = useState(false);
 

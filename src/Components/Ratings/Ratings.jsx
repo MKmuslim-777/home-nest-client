@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
+import useAuth from "../../Hooks/useAuth";
 
 const StarInput = ({ selected, onClick }) => (
   <svg
@@ -17,7 +17,7 @@ const StarInput = ({ selected, onClick }) => (
 );
 
 const Ratings = ({ property }) => {
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const [rating, setRating] = useState(0);
   //   console.log(property);
 

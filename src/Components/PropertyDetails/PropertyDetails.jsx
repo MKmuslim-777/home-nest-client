@@ -11,12 +11,12 @@ import {
 } from "react-icons/hi";
 import { FaBed, FaBath } from "react-icons/fa"; // আরও মানানসই আইকন
 import { useLoaderData, Link } from "react-router";
-import { AuthContext } from "../AuthProvider/AuthProvider";
 import Ratings from "../Ratings/Ratings";
 import Loading from "../Loading/Loading";
+import useAuth from "../../Hooks/useAuth";
 
 const PropertyDetails = () => {
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const { _id: productId } = useLoaderData();
   const [property, setProperty] = useState({});
 

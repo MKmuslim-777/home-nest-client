@@ -10,10 +10,10 @@ import {
   signOut,
 } from "firebase/auth";
 import { app } from "../../Firebase/firebase.config";
+import { AuthContext } from "../Context/AuthContext/AuthContext";
 
 const googleProvider = new GoogleAuthProvider();
 
-export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const [user, setUser] = useState(null);

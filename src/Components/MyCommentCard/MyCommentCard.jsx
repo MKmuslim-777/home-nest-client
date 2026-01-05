@@ -8,10 +8,10 @@ import {
   HiOutlineLocationMarker,
 } from "react-icons/hi";
 import { Link } from "react-router";
-import { AuthContext } from "../AuthProvider/AuthProvider";
+import useAuth from "../../Hooks/useAuth";
 
 const MyCommentCard = ({ card, sl }) => {
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   //   console.log(card);
 
   const { _id, propertyName, propertyImage, commentBy } = card;
